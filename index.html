@@ -6,133 +6,263 @@
   <title>Gin&Jes | Accesorios de Costura y Confección</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="css/styles.css" />
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
-    body { font-family: 'Inter', sans-serif; }
-    .font-display { font-family: 'Playfair Display', serif; }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
-<body class="bg-white text-gray-800">
+<body class="bg-black text-white" style="font-family: 'Inter', sans-serif;">
 
   <!-- NAVBAR -->
-  <header class="bg-white border-b border-gray-100 sticky top-0 z-50">
-    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-      <a href="/" class="flex items-center gap-2">
-        <span class="font-display text-2xl font-bold text-amber-700">Gin<span class="text-gray-800">&amp;</span>Jes</span>
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-black border-b border-yellow-800/40 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="/">
+        <span style="font-family:'Playfair Display',serif;" class="text-2xl font-bold text-yellow-400 tracking-widest">GIN<span class="text-white">&</span>JES</span>
       </a>
-      <nav class="hidden md:flex gap-8 text-sm font-medium text-gray-600">
-        <a href="#productos" class="hover:text-amber-700 transition">Catálogo</a>
-        <a href="#categorias" class="hover:text-amber-700 transition">Categorías</a>
-        <a href="#nosotros" class="hover:text-amber-700 transition">Nosotros</a>
-        <a href="#contacto" class="hover:text-amber-700 transition">Contacto</a>
+      <nav class="hidden md:flex gap-8 text-sm font-medium text-gray-400">
+        <a href="#inicio" class="hover:text-yellow-400 transition tracking-wider uppercase text-xs">Inicio</a>
+        <a href="#categorias" class="hover:text-yellow-400 transition tracking-wider uppercase text-xs">Categorías</a>
+        <a href="#catalogo" class="hover:text-yellow-400 transition tracking-wider uppercase text-xs">Catálogo</a>
+        <a href="#nosotros" class="hover:text-yellow-400 transition tracking-wider uppercase text-xs">Nosotros</a>
+        <a href="#contacto" class="hover:text-yellow-400 transition tracking-wider uppercase text-xs">Contacto</a>
       </nav>
-      <button onclick="toggleCart()" class="relative p-2 hover:bg-amber-50 rounded-full transition">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.4 7h12.8M7 13H5.4M17 21a1 1 0 100-2 1 1 0 000 2zm-10 0a1 1 0 100-2 1 1 0 000 2z" />
+      <button onclick="toggleCart()" class="relative p-2 border border-yellow-800/50 rounded-full hover:border-yellow-400 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.4 7h12.8M7 13H5.4M17 21a1 1 0 100-2 1 1 0 000 2zm-10 0a1 1 0 100-2 1 1 0 000 2z" />
         </svg>
-        <span id="cart-count" class="absolute -top-1 -right-1 bg-amber-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
+        <span id="cart-count" class="absolute -top-1 -right-1 bg-yellow-400 text-black text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">0</span>
       </button>
     </div>
   </header>
 
   <!-- HERO -->
-  <section class="bg-amber-50 py-24">
-    <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center gap-12">
-      <div class="flex-1">
-        <p class="text-amber-600 font-medium tracking-widest text-sm uppercase mb-3">Costura &amp; Confección</p>
-        <h1 class="font-display text-5xl md:text-6xl font-bold text-gray-900 leading-tight mb-5">Calidad en<br/><span class="text-amber-700">cada puntada</span></h1>
-        <p class="text-gray-500 text-lg mb-8 max-w-md">Accesorios y materiales de costura seleccionados para que cada proyecto sea perfecto.</p>
-        <div class="flex gap-4">
-          <a href="#productos" class="bg-amber-700 text-white px-8 py-3 rounded-full font-semibold hover:bg-amber-800 transition">Ver catálogo</a>
-          <a href="#nosotros" class="border border-amber-700 text-amber-700 px-8 py-3 rounded-full font-semibold hover:bg-amber-50 transition">Nosotros</a>
-        </div>
+  <section id="inicio" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <!-- Fondo decorativo -->
+    <div class="absolute inset-0 bg-gradient-to-br from-black via-gray-950 to-black"></div>
+    <div class="absolute inset-0" style="background-image: radial-gradient(ellipse at 20% 50%, rgba(234,179,8,0.07) 0%, transparent 60%), radial-gradient(ellipse at 80% 20%, rgba(234,179,8,0.05) 0%, transparent 50%);"></div>
+    <!-- Lineas decorativas -->
+    <div class="absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-yellow-800/30 to-transparent"></div>
+    <div class="relative z-10 text-center max-w-4xl mx-auto px-6">
+      <p class="text-yellow-400/70 tracking-[0.4em] text-xs uppercase mb-6">Costura &amp; Confección Premium</p>
+      <h1 style="font-family:'Playfair Display',serif;" class="text-6xl md:text-8xl font-bold text-white leading-tight mb-2">
+        Gin<span class="text-yellow-400">&amp;</span>Jes
+      </h1>
+      <div class="flex items-center justify-center gap-4 my-6">
+        <div class="h-px w-24 bg-gradient-to-r from-transparent to-yellow-600"></div>
+        <div class="w-2 h-2 bg-yellow-400 rotate-45"></div>
+        <div class="h-px w-24 bg-gradient-to-l from-transparent to-yellow-600"></div>
       </div>
-      <div class="flex-1 flex justify-center">
-        <div class="bg-white rounded-3xl shadow-xl p-8 text-center w-72">
-          <div class="text-6xl mb-4">🧵</div>
-          <p class="font-display text-xl font-bold text-amber-700">Gin&amp;Jes</p>
-          <p class="text-gray-400 text-sm mt-1">Tu tienda de confianza</p>
-        </div>
+      <p class="text-gray-400 text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">Accesorios y materiales de costura seleccionados con la más alta calidad para que cada proyecto sea perfecto.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#catalogo" class="border border-yellow-400 text-yellow-400 px-10 py-3 text-sm tracking-widest uppercase font-medium hover:bg-yellow-400 hover:text-black transition-all duration-300">Ver catálogo</a>
+        <a href="#nosotros" class="border border-white/20 text-gray-400 px-10 py-3 text-sm tracking-widest uppercase font-medium hover:border-white hover:text-white transition-all duration-300">Nosotros</a>
       </div>
     </div>
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+      <svg class="w-5 h-5 text-yellow-400/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </div>
   </section>
+
+  <!-- BANDA DORADA -->
+  <div class="border-y border-yellow-800/40 py-4 bg-yellow-400/5">
+    <div class="max-w-7xl mx-auto px-6 flex flex-wrap justify-center gap-8 text-xs text-yellow-400/60 tracking-widest uppercase">
+      <span>♦ Hilos Premium</span>
+      <span>♦ Agujas Profesionales</span>
+      <span>♦ Telas Selectas</span>
+      <span>♦ Kits Completos</span>
+      <span>♦ Botones &amp; Cierres</span>
+      <span>♦ Envío a todo el país</span>
+    </div>
+  </div>
 
   <!-- CATEGORÍAS -->
-  <section id="categorias" class="py-16 max-w-6xl mx-auto px-4">
-    <h2 class="font-display text-3xl font-bold mb-8 text-center">Categorías</h2>
+  <section id="categorias" class="py-20 max-w-7xl mx-auto px-6">
+    <div class="text-center mb-12">
+      <p class="text-yellow-400/60 tracking-[0.3em] text-xs uppercase mb-3">Explora</p>
+      <h2 style="font-family:'Playfair Display',serif;" class="text-4xl font-bold text-white">Nuestras Categorías</h2>
+      <div class="flex items-center justify-center gap-3 mt-4">
+        <div class="h-px w-16 bg-yellow-600"></div>
+        <div class="w-1.5 h-1.5 bg-yellow-400 rotate-45"></div>
+        <div class="h-px w-16 bg-yellow-600"></div>
+      </div>
+    </div>
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <button onclick="filterProducts('Hilos')" class="cat-btn bg-amber-50 hover:bg-amber-100 text-amber-800 py-4 rounded-xl font-medium transition text-sm">🧶 Hilos</button>
-      <button onclick="filterProducts('Agujas')" class="cat-btn bg-amber-50 hover:bg-amber-100 text-amber-800 py-4 rounded-xl font-medium transition text-sm">🪡 Agujas</button>
-      <button onclick="filterProducts('Telas')" class="cat-btn bg-amber-50 hover:bg-amber-100 text-amber-800 py-4 rounded-xl font-medium transition text-sm">🎀 Telas</button>
-      <button onclick="filterProducts('Kits')" class="cat-btn bg-amber-50 hover:bg-amber-100 text-amber-800 py-4 rounded-xl font-medium transition text-sm">📦 Kits</button>
-      <button onclick="filterProducts('Botones')" class="cat-btn bg-amber-50 hover:bg-amber-100 text-amber-800 py-4 rounded-xl font-medium transition text-sm">🔘 Botones</button>
-      <button onclick="filterProducts('Cierres')" class="cat-btn bg-amber-50 hover:bg-amber-100 text-amber-800 py-4 rounded-xl font-medium transition text-sm">🤐 Cierres</button>
-      <button onclick="filterProducts('Encajes')" class="cat-btn bg-amber-50 hover:bg-amber-100 text-amber-800 py-4 rounded-xl font-medium transition text-sm">✨ Encajes</button>
-      <button onclick="filterProducts(null)" class="cat-btn bg-gray-100 hover:bg-gray-200 text-gray-700 py-4 rounded-xl font-medium transition text-sm">Ver todos</button>
+      <button onclick="filterProducts('Hilos')" class="cat-btn group border border-yellow-800/40 bg-gray-950 hover:border-yellow-400 py-6 px-4 transition-all duration-300">
+        <div class="text-3xl mb-2">🧶</div>
+        <p class="text-yellow-400 text-sm font-medium tracking-wider uppercase group-hover:text-yellow-300">Hilos</p>
+      </button>
+      <button onclick="filterProducts('Agujas')" class="cat-btn group border border-yellow-800/40 bg-gray-950 hover:border-yellow-400 py-6 px-4 transition-all duration-300">
+        <div class="text-3xl mb-2">🪡</div>
+        <p class="text-yellow-400 text-sm font-medium tracking-wider uppercase group-hover:text-yellow-300">Agujas</p>
+      </button>
+      <button onclick="filterProducts('Telas')" class="cat-btn group border border-yellow-800/40 bg-gray-950 hover:border-yellow-400 py-6 px-4 transition-all duration-300">
+        <div class="text-3xl mb-2">🎀</div>
+        <p class="text-yellow-400 text-sm font-medium tracking-wider uppercase group-hover:text-yellow-300">Telas</p>
+      </button>
+      <button onclick="filterProducts('Kits')" class="cat-btn group border border-yellow-800/40 bg-gray-950 hover:border-yellow-400 py-6 px-4 transition-all duration-300">
+        <div class="text-3xl mb-2">📦</div>
+        <p class="text-yellow-400 text-sm font-medium tracking-wider uppercase group-hover:text-yellow-300">Kits</p>
+      </button>
+      <button onclick="filterProducts('Botones')" class="cat-btn group border border-yellow-800/40 bg-gray-950 hover:border-yellow-400 py-6 px-4 transition-all duration-300">
+        <div class="text-3xl mb-2">🔘</div>
+        <p class="text-yellow-400 text-sm font-medium tracking-wider uppercase group-hover:text-yellow-300">Botones</p>
+      </button>
+      <button onclick="filterProducts('Cierres')" class="cat-btn group border border-yellow-800/40 bg-gray-950 hover:border-yellow-400 py-6 px-4 transition-all duration-300">
+        <div class="text-3xl mb-2">🤐</div>
+        <p class="text-yellow-400 text-sm font-medium tracking-wider uppercase group-hover:text-yellow-300">Cierres</p>
+      </button>
+      <button onclick="filterProducts('Encajes')" class="cat-btn group border border-yellow-800/40 bg-gray-950 hover:border-yellow-400 py-6 px-4 transition-all duration-300">
+        <div class="text-3xl mb-2">✨</div>
+        <p class="text-yellow-400 text-sm font-medium tracking-wider uppercase group-hover:text-yellow-300">Encajes</p>
+      </button>
+      <button onclick="filterProducts(null)" class="cat-btn group border border-white/10 bg-gray-950 hover:border-yellow-400 py-6 px-4 transition-all duration-300">
+        <div class="text-3xl mb-2">📋</div>
+        <p class="text-gray-400 text-sm font-medium tracking-wider uppercase group-hover:text-yellow-400">Ver todos</p>
+      </button>
     </div>
   </section>
 
-  <!-- PRODUCTOS -->
-  <section id="productos" class="pb-16 max-w-6xl mx-auto px-4">
-    <h2 class="font-display text-3xl font-bold mb-8 text-center">Catálogo</h2>
-    <div id="product-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-      <!-- Productos renderizados por JS -->
+  <!-- CATÁLOGO DE PRODUCTOS -->
+  <section id="catalogo" class="py-20 bg-gray-950">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <p class="text-yellow-400/60 tracking-[0.3em] text-xs uppercase mb-3">Gin &amp; Jes</p>
+        <h2 style="font-family:'Playfair Display',serif;" class="text-4xl font-bold text-white">Catálogo</h2>
+        <div class="flex items-center justify-center gap-3 mt-4">
+          <div class="h-px w-16 bg-yellow-600"></div>
+          <div class="w-1.5 h-1.5 bg-yellow-400 rotate-45"></div>
+          <div class="h-px w-16 bg-yellow-600"></div>
+        </div>
+      </div>
+      <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <!-- Renderizado por JS -->
+      </div>
     </div>
   </section>
 
   <!-- NOSOTROS -->
-  <section id="nosotros" class="bg-amber-50 py-20">
-    <div class="max-w-4xl mx-auto px-4 flex flex-col md:flex-row gap-10 items-center">
-      <div class="text-6xl">✂️</div>
+  <section id="nosotros" class="py-24">
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
       <div>
-        <h2 class="font-display text-3xl font-bold mb-4">¿Quiénes somos?</h2>
-        <p class="text-gray-600 text-lg leading-relaxed">En <strong>Gin&amp;Jes</strong> somos apasionadas de la costura y la confección. Ofrecemos accesorios de alta calidad seleccionados especialmente para costureras, diseñadoras y artesanas que buscan lo mejor para sus proyectos. Cada producto en nuestro catálogo ha sido elegido con cuidado y dedicación.</p>
+        <p class="text-yellow-400/60 tracking-[0.3em] text-xs uppercase mb-4">Nuestra historia</p>
+        <h2 style="font-family:'Playfair Display',serif;" class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">¿Quiénes somos?</h2>
+        <div class="h-px w-16 bg-yellow-600 mb-6"></div>
+        <p class="text-gray-400 text-lg leading-relaxed mb-6">En <span class="text-yellow-400">Gin&amp;Jes</span> somos apasionadas de la costura y la confección. Ofrecemos accesorios de alta calidad seleccionados especialmente para costureras, diseñadoras y artesanas que buscan lo mejor para sus proyectos.</p>
+        <p class="text-gray-500 leading-relaxed">Cada producto en nuestro catálogo ha sido elegido con cuidado y dedicación, porque sabemos que la calidad de tus materiales define la calidad de tu trabajo.</p>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="border border-yellow-800/40 bg-gray-950 p-6 text-center">
+          <p style="font-family:'Playfair Display',serif;" class="text-4xl font-bold text-yellow-400 mb-2">+100</p>
+          <p class="text-gray-400 text-sm tracking-wider uppercase">Productos</p>
+        </div>
+        <div class="border border-yellow-800/40 bg-gray-950 p-6 text-center">
+          <p style="font-family:'Playfair Display',serif;" class="text-4xl font-bold text-yellow-400 mb-2">+500</p>
+          <p class="text-gray-400 text-sm tracking-wider uppercase">Clientes</p>
+        </div>
+        <div class="border border-yellow-800/40 bg-gray-950 p-6 text-center">
+          <p style="font-family:'Playfair Display',serif;" class="text-4xl font-bold text-yellow-400 mb-2">5★</p>
+          <p class="text-gray-400 text-sm tracking-wider uppercase">Valoración</p>
+        </div>
+        <div class="border border-yellow-800/40 bg-gray-950 p-6 text-center">
+          <p style="font-family:'Playfair Display',serif;" class="text-4xl font-bold text-yellow-400 mb-2">100%</p>
+          <p class="text-gray-400 text-sm tracking-wider uppercase">Calidad</p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- CONTACTO -->
-  <section id="contacto" class="py-16 max-w-2xl mx-auto px-4">
-    <h2 class="font-display text-3xl font-bold mb-6 text-center">Contáctanos</h2>
-    <div class="bg-amber-50 rounded-2xl p-8 text-center mb-8">
-      <p class="text-gray-600 mb-4">¿Tienes alguna consulta sobre nuestros productos?</p>
-      <div class="flex flex-col gap-3 items-center">
-        <a href="https://wa.me/51999999999" class="flex items-center gap-2 bg-green-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-green-600 transition">💬 WhatsApp</a>
-        <a href="mailto:ginjes@gmail.com" class="flex items-center gap-2 border border-amber-700 text-amber-700 px-6 py-3 rounded-full font-semibold hover:bg-amber-50 transition">📧 Email</a>
+  <section id="contacto" class="py-24 bg-gray-950">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <p class="text-yellow-400/60 tracking-[0.3em] text-xs uppercase mb-3">Estamos para ti</p>
+        <h2 style="font-family:'Playfair Display',serif;" class="text-4xl font-bold text-white">Contáctanos</h2>
+        <div class="flex items-center justify-center gap-3 mt-4">
+          <div class="h-px w-16 bg-yellow-600"></div>
+          <div class="w-1.5 h-1.5 bg-yellow-400 rotate-45"></div>
+          <div class="h-px w-16 bg-yellow-600"></div>
+        </div>
+      </div>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="flex flex-col gap-4">
+          <a href="https://wa.me/51999999999" class="flex items-center gap-4 border border-yellow-800/40 bg-black p-5 hover:border-yellow-400 transition group">
+            <span class="text-2xl">💬</span>
+            <div>
+              <p class="text-yellow-400 text-sm font-medium uppercase tracking-wider group-hover:text-yellow-300">WhatsApp</p>
+              <p class="text-gray-500 text-sm">Escríbenos al instante</p>
+            </div>
+          </a>
+          <a href="mailto:ginjes@gmail.com" class="flex items-center gap-4 border border-yellow-800/40 bg-black p-5 hover:border-yellow-400 transition group">
+            <span class="text-2xl">📧</span>
+            <div>
+              <p class="text-yellow-400 text-sm font-medium uppercase tracking-wider group-hover:text-yellow-300">Email</p>
+              <p class="text-gray-500 text-sm">ginjes@gmail.com</p>
+            </div>
+          </a>
+          <a href="https://instagram.com/ginjes" class="flex items-center gap-4 border border-yellow-800/40 bg-black p-5 hover:border-yellow-400 transition group">
+            <span class="text-2xl">📸</span>
+            <div>
+              <p class="text-yellow-400 text-sm font-medium uppercase tracking-wider group-hover:text-yellow-300">Instagram</p>
+              <p class="text-gray-500 text-sm">@ginjes</p>
+            </div>
+          </a>
+        </div>
+        <form class="flex flex-col gap-4" onsubmit="handleContact(event)">
+          <input type="text" placeholder="Tu nombre" class="bg-black border border-yellow-800/40 text-white px-5 py-3 focus:outline-none focus:border-yellow-400 transition placeholder-gray-600" />
+          <input type="email" placeholder="Tu correo" class="bg-black border border-yellow-800/40 text-white px-5 py-3 focus:outline-none focus:border-yellow-400 transition placeholder-gray-600" />
+          <textarea placeholder="Tu consulta..." rows="4" class="bg-black border border-yellow-800/40 text-white px-5 py-3 focus:outline-none focus:border-yellow-400 transition placeholder-gray-600 resize-none"></textarea>
+          <button type="submit" class="border border-yellow-400 text-yellow-400 py-3 text-sm tracking-widest uppercase font-medium hover:bg-yellow-400 hover:text-black transition-all duration-300">Enviar consulta</button>
+        </form>
       </div>
     </div>
-    <form class="bg-white shadow-md rounded-2xl p-8 flex flex-col gap-4">
-      <input type="text" placeholder="Tu nombre" class="border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-300" />
-      <input type="email" placeholder="Tu correo" class="border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-300" />
-      <textarea placeholder="Tu consulta..." rows="4" class="border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-300"></textarea>
-      <button type="submit" class="bg-amber-700 text-white py-3 rounded-lg font-semibold hover:bg-amber-800 transition">Enviar consulta</button>
-    </form>
   </section>
 
   <!-- FOOTER -->
-  <footer class="bg-gray-900 text-white py-8">
-    <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
-      <span class="font-display text-xl font-bold text-amber-400">Gin&amp;Jes</span>
-      <p class="text-gray-400 text-sm">Accesorios de costura y confección de calidad</p>
-      <p class="text-gray-500 text-sm">&copy; 2026 Gin&amp;Jes. Todos los derechos reservados.</p>
+  <footer class="border-t border-yellow-800/30 py-10">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+      <span style="font-family:'Playfair Display',serif;" class="text-2xl font-bold text-yellow-400 tracking-widest">GIN<span class="text-white">&amp;</span>JES</span>
+      <p class="text-gray-600 text-sm tracking-wider">Accesorios de costura y confección de alta calidad</p>
+      <p class="text-gray-700 text-sm">&copy; 2026 Gin&amp;Jes. Todos los derechos reservados.</p>
     </div>
   </footer>
 
   <!-- CART SIDEBAR -->
-  <div id="cart-sidebar" class="fixed top-0 right-0 h-full w-80 bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 p-6 flex flex-col">
-    <div class="flex justify-between items-center mb-6">
-      <h3 class="font-display font-bold text-lg">Tu carrito</h3>
-      <button onclick="toggleCart()" class="text-gray-400 hover:text-amber-700 text-xl">&times;</button>
+  <div id="cart-sidebar" class="fixed top-0 right-0 h-full w-80 bg-gray-950 border-l border-yellow-800/40 z-50 transform translate-x-full transition-transform duration-300 p-6 flex flex-col">
+    <div class="flex justify-between items-center mb-6 border-b border-yellow-800/30 pb-4">
+      <h3 style="font-family:'Playfair Display',serif;" class="font-bold text-lg text-white">Tu carrito</h3>
+      <button onclick="toggleCart()" class="text-gray-500 hover:text-yellow-400 text-2xl leading-none">&times;</button>
     </div>
-    <div id="cart-items" class="flex-1 overflow-y-auto text-sm text-gray-600">
-      <p class="text-gray-400 text-center mt-8">Tu carrito está vacío 🧵</p>
+    <div id="cart-items" class="flex-1 overflow-y-auto text-sm text-gray-400">
+      <p class="text-center mt-12 text-gray-600">🧵 Tu carrito está vacío</p>
     </div>
-    <div class="border-t pt-4">
-      <p class="font-semibold text-right text-lg">Total: <span id="cart-total" class="text-amber-700">S/ 0.00</span></p>
-      <button class="mt-3 w-full bg-amber-700 text-white py-3 rounded-xl font-semibold hover:bg-amber-800 transition">Realizar pedido</button>
+    <div class="border-t border-yellow-800/30 pt-4">
+      <p class="text-right text-white">Total: <span id="cart-total" class="text-yellow-400 font-bold text-lg">S/ 0.00</span></p>
+      <button class="mt-3 w-full border border-yellow-400 text-yellow-400 py-3 text-sm tracking-widest uppercase hover:bg-yellow-400 hover:text-black transition-all duration-300">Realizar pedido</button>
     </div>
   </div>
-  <div id="cart-overlay" onclick="toggleCart()" class="hidden fixed inset-0 bg-black bg-opacity-40 z-40"></div>
+  <div id="cart-overlay" onclick="toggleCart()" class="hidden fixed inset-0 bg-black bg-opacity-70 z-40"></div>
+
+  <!-- MODAL PRODUCTO -->
+  <div id="product-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div class="absolute inset-0 bg-black/80" onclick="closeModal()"></div>
+    <div class="relative bg-gray-950 border border-yellow-800/40 max-w-2xl w-full p-8 z-10">
+      <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-500 hover:text-yellow-400 text-2xl">&times;</button>
+      <div class="grid md:grid-cols-2 gap-8">
+        <img id="modal-img" src="" alt="" class="w-full aspect-square object-cover" />
+        <div class="flex flex-col justify-between">
+          <div>
+            <p id="modal-cat" class="text-yellow-400/60 text-xs tracking-widest uppercase mb-2"></p>
+            <h3 id="modal-name" style="font-family:'Playfair Display',serif;" class="text-2xl font-bold text-white mb-3"></h3>
+            <div class="h-px w-12 bg-yellow-600 mb-4"></div>
+            <p id="modal-desc" class="text-gray-400 leading-relaxed text-sm mb-4"></p>
+          </div>
+          <div>
+            <p id="modal-price" class="text-yellow-400 text-3xl font-bold mb-4"></p>
+            <button id="modal-btn" onclick="" class="w-full border border-yellow-400 text-yellow-400 py-3 text-sm tracking-widest uppercase hover:bg-yellow-400 hover:text-black transition-all duration-300">+ Agregar al carrito</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script src="js/products.js"></script>
   <script src="js/cart.js"></script>
