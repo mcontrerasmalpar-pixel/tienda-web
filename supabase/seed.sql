@@ -1,142 +1,129 @@
 -- =============================================
--- SEED — Hebillas Gin&Jes
--- Rutas exactas según Supabase Storage bucket: productos
--- Ejecutar en: Supabase → SQL Editor
+-- SEED CORREGIDO — Hebillas Gin&Jes
+-- Rutas exactas según bucket "productos" en Supabase Storage
+-- Ejecutar en: Supabase → SQL Editor → Run
 -- =============================================
 
--- Limpiar productos anteriores
 TRUNCATE public.productos RESTART IDENTITY;
 
 INSERT INTO public.productos
   (nombre, precio, imagen_url, categoria, descripcion, codigo, destacado, activo)
 VALUES
 
-  -- ────────────────────────────────────────────────
-  -- PEGAPEGA  (carpeta: pegapega/)
-  -- Subcarpetas: americano | gradob
-  -- ────────────────────────────────────────────────
-  -- NOTA: reemplaza "imagen.jpg" por el nombre real del archivo
-  -- dentro de cada subcarpeta (ej: americano.jpg, gradob.png, etc.)
+  -- ── PEGAPEGA ──────────────────────────────────────────────
   ('Pegapega Americano',
    0.00, 'pegapega/americano/americano.jpg',
-   'Insumos Galvánicos y Otros',
+   'Pegapega',
    'Pegamento americano de alta resistencia para cuero y textil.',
    'PEG-AMERIC', true, true),
 
   ('Pegapega Grado B',
    0.00, 'pegapega/gradob/gradob.jpg',
-   'Insumos Galvánicos y Otros',
-   'Pegamento industrial Grado B para herrajes, plantillas y calzado.',
+   'Pegapega',
+   'Pegamento industrial Grado B para herrajes y calzado.',
    'PEG-GRADOB', false, true),
 
-  -- ────────────────────────────────────────────────
-  -- PRODUCTOS METALES  (carpeta: productos metales/)
-  -- Archivos: argollas | aro mosqueton | base de llavero |
-  --           broche iman | broche7050 | ganchos |
-  --           media luna | mosquetones | reguladores
-  -- ────────────────────────────────────────────────
-  -- NOTA: usa la extensión real (.jpg, .png, .webp)
-  -- del archivo subido. Ej: 'productos metales/argollas.jpg'
-  ('Argollas',
-   0.00, 'productos metales/argollas.jpg',
-   'Aplicaciones',
-   'Argollas metálicas de zamak para bolsos, correas y accesorios.',
-   'MET-ARGOLL', false, true),
+  -- ── BROCHES / IMÁN ────────────────────────────────────────
+  ('Broche Imán para Coser',
+   0.00, 'productos metales/broche iman/broche iman coser.jpg',
+   'Broches',
+   'Broche de imán para coser en bolsos y carteras.',
+   'MET-BRIMAN-COS', true, true),
 
-  ('Aro Mosquetón',
-   0.00, 'productos metales/aro mosqueton.jpg',
-   'Aplicaciones',
-   'Aro tipo mosquetón metálico para llaveros y accesorios.',
-   'MET-AROMOSQ', false, true),
+  ('Imán Dorado 18mm',
+   0.00, 'productos metales/broche iman/iman dorado 18.png',
+   'Broches',
+   'Imán dorado de 18mm para bolsos y accesorios.',
+   'MET-IMAN-D18', false, true),
 
-  ('Base de Llavero',
-   0.00, 'productos metales/base de llavero.jpg',
-   'Aplicaciones',
-   'Base metálica para llavero, acabado niquelado o dorado.',
-   'MET-BASLLAV', false, true),
+  ('Imán Níquel 10mm',
+   0.00, 'productos metales/broche iman/iman niquel 10mm.png',
+   'Broches',
+   'Imán niquelado de 10mm.',
+   'MET-IMAN-N10', false, true),
 
-  ('Broche Imán',
-   0.00, 'productos metales/broche iman.jpg',
-   'Aplicaciones',
-   'Broche de imán para bolsos y carteras, zamak con acabado premium.',
-   'MET-BRIMAN', true, true),
+  ('Imán Níquel 18mm',
+   0.00, 'productos metales/broche iman/iman niquel 18.png',
+   'Broches',
+   'Imán niquelado de 18mm.',
+   'MET-IMAN-N18', false, true),
 
+  ('Imán Plano 16mm',
+   0.00, 'productos metales/broche iman/iman plano 16.png',
+   'Broches',
+   'Imán plano de 16mm para cierre de bolsos.',
+   'MET-IMAN-P16', false, true),
+
+  ('Imán Plano 18mm',
+   0.00, 'productos metales/broche iman/iman plano 18.png',
+   'Broches',
+   'Imán plano de 18mm.',
+   'MET-IMAN-P18', false, true),
+
+  -- ── BROCHES 7050 ──────────────────────────────────────────
   ('Broche 7050',
-   0.00, 'productos metales/broche7050.jpg',
-   'Aplicaciones',
+   0.00, 'productos metales/broche7050/broche 7050.webp',
+   'Broches',
    'Broche modelo 7050 de zamak para carteras y marroquinería.',
    'MET-BR7050', false, true),
 
-  ('Ganchos',
-   0.00, 'productos metales/ganchos.jpg',
-   'Aplicaciones',
-   'Ganchos metálicos para correas, bolsos y accesorios de cuero.',
-   'MET-GANCHO', false, true),
+  -- ── GANCHOS ───────────────────────────────────────────────
+  ('Gancho Rino',
+   0.00, 'productos metales/ganchos/gancho rino/gancho rino.jpg',
+   'Ganchos',
+   'Gancho metálico tipo Rino para correas y bolsos.',
+   'MET-GANCH-RINO', false, true),
 
+  -- ── HERRAJES METÁLICOS ────────────────────────────────────
   ('Media Luna',
-   0.00, 'productos metales/media luna.jpg',
-   'Aplicaciones',
+   0.00, 'productos metales/media luna/media luna.jpg',
+   'Herrajes Metálicos',
    'Herraje media luna de zamak para bolsos y marroquinería.',
    'MET-MEDLUN', false, true),
 
-  ('Mosquetones (Metal)',
-   0.00, 'productos metales/mosquetones.jpg',
-   'Aplicaciones',
-   'Mosquetones metálicos de alta resistencia para llaveros y correas.',
-   'MET-MOSQUT', true, true),
+  -- ── MOSQUETONES ───────────────────────────────────────────
+  ('Mosquetón Fotochek',
+   0.00, 'productos metales/mosquetones/mosqueton fotockeck.jpg',
+   'Mosquetones',
+   'Mosquetón tipo fotochek para llaveros y accesorios.',
+   'MET-MOSQ-FOTO', true, true),
 
-  ('Reguladores (Metal)',
-   0.00, 'productos metales/reguladores.jpg',
-   'Aplicaciones',
-   'Reguladores metálicos para correas y tirantes de bolsos.',
-   'MET-REGULA', false, true),
+  ('Mosquetón Giratorio',
+   0.00, 'productos metales/mosquetones/mosqueton giratorio.jpg',
+   'Mosquetones',
+   'Mosquetón giratorio metálico de alta resistencia.',
+   'MET-MOSQ-GIR', false, true),
 
-  -- ────────────────────────────────────────────────
-  -- PRODUCTOS PLÁSTICOS  (carpeta: productos plasticos/)
-  -- Archivos: mosquetones | reguladores | tiptop
-  -- ────────────────────────────────────────────────
-  ('Mosquetones (Plástico)',
-   0.00, 'productos plasticos/mosquetones.jpg',
-   'Insumos Galvánicos y Otros',
-   'Mosquetones plásticos livianos para bolsos, mochilas y accesorios.',
-   'PLAS-MOSQUT', false, true),
+  ('Mosquetón Simple',
+   0.00, 'productos metales/mosquetones/mosqueton simple.jpg',
+   'Mosquetones',
+   'Mosquetón simple para llaveros y correas.',
+   'MET-MOSQ-SIMP', false, true),
 
-  ('Reguladores (Plástico)',
-   0.00, 'productos plasticos/reguladores.jpg',
-   'Insumos Galvánicos y Otros',
-   'Reguladores plásticos para correas y mochilas.',
-   'PLAS-REGULA', false, true),
+  -- ── REGULADORES ───────────────────────────────────────────
+  ('Regulador Escalera',
+   0.00, 'productos metales/reguladores/regulador escalera.jpg',
+   'Reguladores',
+   'Regulador tipo escalera metálico para correas.',
+   'MET-REG-ESC', false, true),
 
+  ('Regulador Plástico',
+   0.00, 'productos metales/reguladores/regulador plastico.jpg',
+   'Reguladores',
+   'Regulador en plástico para correas y mochilas.',
+   'PLAS-REG', false, true),
+
+  -- ── TIPTOP (PLÁSTICOS) ────────────────────────────────────
   ('Tiptop Sapito',
-   0.00, 'productos plasticos/tiptop.jpg',
-   'Insumos Galvánicos y Otros',
-   'Tiptop modelo sapito en plástico para calzado infantil y casual.',
+   0.00, 'productos plasticos/tiptop/sapito/tiptopsapito.jpg',
+   'Tiptop',
+   'Tiptop modelo sapito en plástico para calzado.',
    'PLAS-TIPSAP', true, true);
-
-
--- =============================================
--- PASO 2: ACTUALIZAR PRECIOS
--- Descomenta y completa con los precios reales
--- =============================================
--- UPDATE public.productos SET precio = 0.00 WHERE codigo = 'PEG-AMERIC';
--- UPDATE public.productos SET precio = 0.00 WHERE codigo = 'PEG-GRADOB';
--- UPDATE public.productos SET precio = 0.00 WHERE codigo = 'MET-ARGOLL';
--- UPDATE public.productos SET precio = 0.00 WHERE codigo = 'MET-AROMOSQ';
--- UPDATE public.productos SET precio = 0.00 WHERE codigo = 'MET-BASLLAV';
--- UPDATE public.productos SET precio = 0.00 WHERE codigo = 'MET-BRIMAN';
--- UPDATE public.productos SET precio = 0.00 WHERE codigo = 'MET-BR7050';
--- UPDATE public.productos SET precio = 0.00 WHERE codigo = 'MET-GANCHO';
--- UPDATE public.productos SET precio = 0.00 WHERE codigo = 'MET-MEDLUN';
--- UPDATE public.productos SET precio = 0.00 WHERE codigo = 'MET-MOSQUT';
--- UPDATE public.productos SET precio = 0.00 WHERE codigo = 'MET-REGULA';
--- UPDATE public.productos SET precio = 0.00 WHERE codigo = 'PLAS-MOSQUT';
--- UPDATE public.productos SET precio = 0.00 WHERE codigo = 'PLAS-REGULA';
--- UPDATE public.productos SET precio = 0.00 WHERE codigo = 'PLAS-TIPSAP';
 
 
 -- =============================================
 -- VERIFICAR
 -- =============================================
-SELECT id, codigo, nombre, categoria, imagen_url, precio, destacado
+SELECT id, codigo, nombre, categoria, imagen_url
 FROM public.productos
 ORDER BY categoria, nombre;

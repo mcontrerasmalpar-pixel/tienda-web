@@ -4,12 +4,36 @@ let currentView = 'grid', currentSort = 'default', currentSearch = '', currentCa
 
 const PLACEHOLDER = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22 viewBox=%220 0 400 400%22%3E%3Crect width=%22400%22 height=%22400%22 fill=%22%230d0d0d%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2228%22 fill=%22%23C9A84C%22%3EGin%26Jes%3C/text%3E%3C/svg%3E';
 
-// Fallback de datos cuando Supabase no responde
+// Fallback con rutas reales del bucket
 const fallbackProducts = [
-  { id:1, nombre:'Argollas',           precio:0, imagen_url:'productos metales/argollas.jpg',      categoria:'Aplicaciones',              descripcion:'Argollas met\u00e1licas.',   codigo:'ARG-001', destacado:false },
-  { id:2, nombre:'Aro Mosquet\u00f3n', precio:0, imagen_url:'productos metales/aro mosqueton.jpg', categoria:'Aplicaciones',              descripcion:'Aro mosquet\u00f3n.',        codigo:'ARO-001', destacado:false },
-  { id:3, nombre:'Pegapega Americano', precio:0, imagen_url:'pegapega/americano/americano.jpg',     categoria:'Insumos Galv\u00e1nicos y Otros', descripcion:'Pegamento americano.', codigo:'PEG-AME', destacado:true  },
-  { id:4, nombre:'Pegapega Grado B',   precio:0, imagen_url:'pegapega/gradob/gradob.jpg',           categoria:'Insumos Galv\u00e1nicos y Otros', descripcion:'Pegamento Grado B.',   codigo:'PEG-B',   destacado:false },
+  { id:1,  nombre:'Pegapega Americano',    precio:0, imagen_url:'pegapega/americano/americano.jpg',                              categoria:'Pegapega',          descripcion:'Pegamento americano de alta resistencia.', codigo:'PEG-AMERIC',     destacado:true  },
+  { id:2,  nombre:'Pegapega Grado B',      precio:0, imagen_url:'pegapega/gradob/gradob.jpg',                                   categoria:'Pegapega',          descripcion:'Pegamento industrial Grado B.',            codigo:'PEG-GRADOB',     destacado:false },
+  { id:3,  nombre:'Broche Imán para Coser',precio:0, imagen_url:'productos metales/broche iman/broche iman coser.jpg',          categoria:'Broches',           descripcion:'Broche imán para coser en bolsos.',        codigo:'MET-BRIMAN-COS', destacado:true  },
+  { id:4,  nombre:'Imán Dorado 18mm',      precio:0, imagen_url:'productos metales/broche iman/iman dorado 18.png',             categoria:'Broches',           descripcion:'Imán dorado de 18mm.',                    codigo:'MET-IMAN-D18',   destacado:false },
+  { id:5,  nombre:'Imán Níquel 10mm',      precio:0, imagen_url:'productos metales/broche iman/iman niquel 10mm.png',           categoria:'Broches',           descripcion:'Imán niquelado de 10mm.',                 codigo:'MET-IMAN-N10',   destacado:false },
+  { id:6,  nombre:'Imán Níquel 18mm',      precio:0, imagen_url:'productos metales/broche iman/iman niquel 18.png',             categoria:'Broches',           descripcion:'Imán niquelado de 18mm.',                 codigo:'MET-IMAN-N18',   destacado:false },
+  { id:7,  nombre:'Imán Plano 16mm',       precio:0, imagen_url:'productos metales/broche iman/iman plano 16.png',              categoria:'Broches',           descripcion:'Imán plano de 16mm.',                     codigo:'MET-IMAN-P16',   destacado:false },
+  { id:8,  nombre:'Imán Plano 18mm',       precio:0, imagen_url:'productos metales/broche iman/iman plano 18.png',              categoria:'Broches',           descripcion:'Imán plano de 18mm.',                     codigo:'MET-IMAN-P18',   destacado:false },
+  { id:9,  nombre:'Broche 7050',           precio:0, imagen_url:'productos metales/broche7050/broche 7050.webp',                categoria:'Broches',           descripcion:'Broche modelo 7050 de zamak.',             codigo:'MET-BR7050',     destacado:false },
+  { id:10, nombre:'Gancho Rino',           precio:0, imagen_url:'productos metales/ganchos/gancho rino/gancho rino.jpg',        categoria:'Ganchos',           descripcion:'Gancho tipo Rino para correas.',           codigo:'MET-GANCH-RINO', destacado:false },
+  { id:11, nombre:'Media Luna',            precio:0, imagen_url:'productos metales/media luna/media luna.jpg',                 categoria:'Herrajes Metálicos', descripcion:'Herraje media luna de zamak.',            codigo:'MET-MEDLUN',     destacado:false },
+  { id:12, nombre:'Mosquetón Fotochek',    precio:0, imagen_url:'productos metales/mosquetones/mosqueton fotockeck.jpg',        categoria:'Mosquetones',       descripcion:'Mosquetón tipo fotochek.',                 codigo:'MET-MOSQ-FOTO',  destacado:true  },
+  { id:13, nombre:'Mosquetón Giratorio',   precio:0, imagen_url:'productos metales/mosquetones/mosqueton giratorio.jpg',        categoria:'Mosquetones',       descripcion:'Mosquetón giratorio metálico.',            codigo:'MET-MOSQ-GIR',   destacado:false },
+  { id:14, nombre:'Mosquetón Simple',      precio:0, imagen_url:'productos metales/mosquetones/mosqueton simple.jpg',           categoria:'Mosquetones',       descripcion:'Mosquetón simple para llaveros.',          codigo:'MET-MOSQ-SIMP',  destacado:false },
+  { id:15, nombre:'Regulador Escalera',    precio:0, imagen_url:'productos metales/reguladores/regulador escalera.jpg',         categoria:'Reguladores',       descripcion:'Regulador tipo escalera metálico.',        codigo:'MET-REG-ESC',    destacado:false },
+  { id:16, nombre:'Regulador Plástico',    precio:0, imagen_url:'productos metales/reguladores/regulador plastico.jpg',         categoria:'Reguladores',       descripcion:'Regulador en plástico para correas.',     codigo:'PLAS-REG',       destacado:false },
+  { id:17, nombre:'Tiptop Sapito',         precio:0, imagen_url:'productos plasticos/tiptop/sapito/tiptopsapito.jpg',           categoria:'Tiptop',            descripcion:'Tiptop sapito en plástico para calzado.', codigo:'PLAS-TIPSAP',    destacado:true  },
+];
+
+// Categorías reales del bucket
+const CATEGORIAS = [
+  'Pegapega',
+  'Broches',
+  'Ganchos',
+  'Herrajes Metálicos',
+  'Mosquetones',
+  'Reguladores',
+  'Tiptop',
 ];
 
 function formatPrecio(precio) {
@@ -22,7 +46,6 @@ function formatPrecioModal(precio) {
   return (!n || n <= 0) ? 'Consultar precio' : 'S/ ' + n.toFixed(2);
 }
 
-// Maneja errores de imagen via delegacion — sin onerror inline
 function handleImgError(e) {
   if (e.target.src !== PLACEHOLDER) e.target.src = PLACEHOLDER;
 }
@@ -35,16 +58,27 @@ async function initProducts() {
   try { data = await loadProductsFromSupabase(); } catch(e) { console.warn('Supabase:', e); }
   if (data && data.length) data = data.map(p => ({ ...p, id: Number(p.id), precio: parseFloat(p.precio)||0 }));
 
-  allProducts     = (data && data.length) ? data : [...fallbackProducts];
+  allProducts      = (data && data.length) ? data : [...fallbackProducts];
   filteredProducts = [...allProducts];
 
-  // Delegacion de error en imagenes — un solo listener en el grid
   document.getElementById('product-grid').addEventListener('error', handleImgError, true);
 
   document.getElementById('loading-state').style.display = 'none';
   document.getElementById('product-grid').classList.remove('hidden');
+  buildCategoryButtons();
   updateCounts();
   applyFilters();
+}
+
+function buildCategoryButtons() {
+  const container = document.getElementById('cat-buttons');
+  if (!container) return;
+  const cats = [...new Set(allProducts.map(p => p.categoria))].sort();
+  const allBtn = `<button class="cat-btn active" data-cat="all" onclick="filterProducts(null)">Todos <span id="count-all"></span></button>`;
+  const catBtns = cats.map(c =>
+    `<button class="cat-btn" data-cat="${escAttr(c)}" onclick="filterProducts('${escAttr(c)}')">${escAttr(c)} <span></span></button>`
+  ).join('');
+  container.innerHTML = allBtn + catBtns;
 }
 
 function updateCounts() {
@@ -185,7 +219,7 @@ function openModal(id) {
   modalImg.onerror = () => { modalImg.src = PLACEHOLDER; };
   document.getElementById('modal-cat').textContent   = p.categoria;
   document.getElementById('modal-name').textContent  = p.nombre;
-  document.getElementById('modal-code').textContent  = p.codigo ? 'C\u00f3d. ' + p.codigo : '';
+  document.getElementById('modal-code').textContent  = p.codigo ? 'Cód. ' + p.codigo : '';
   document.getElementById('modal-desc').textContent  = p.descripcion || '';
   document.getElementById('modal-price').textContent = formatPrecioModal(p.precio);
   document.getElementById('modal-btn').onclick = () => { addToCart(p.id); closeModal(); };
