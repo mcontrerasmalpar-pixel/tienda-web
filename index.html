@@ -3,355 +3,357 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hebillas Gin&Jes — Herrajes de Calidad, Lima</title>
+  <title>Hebillas Gin&amp;Jes — Herrajes de Calidad, Lima</title>
   <meta name="description" content="Más de 30 años fabricando hebillas y herrajes de calidad para calzado, textil y confección en Perú." />
+
+  <!-- Fuentes: Plus Jakarta Sans (body) + Fraunces (display) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fraunces:ital,wght@1,300;1,400&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
 
-  <!-- ── NAVBAR ── -->
-  <header id="navbar">
-    <div class="nav-inner">
-      <a href="/" class="logo">
-        <span class="logo-top">HEBILLAS</span>
-        <span class="logo-bottom">GIN<em>&amp;</em>JES</span>
-      </a>
-      <nav class="nav-links">
-        <a href="#inicio">Inicio</a>
-        <a href="#tienda">Tienda</a>
-        <a href="#nosotros">Nosotros</a>
-        <a href="#contacto">Contacto</a>
-      </nav>
-      <div class="nav-actions">
-        <div class="search-wrap">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-          <input id="search-input" type="text" placeholder="Buscar..." oninput="searchProducts(this.value)" />
-        </div>
-        <button class="cart-btn" onclick="toggleCart()">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-          <span id="cart-count">0</span>
-        </button>
-        <button class="menu-btn" onclick="toggleMenu()">
-          <span></span><span></span><span></span>
-        </button>
+<!-- ── NAVBAR ── -->
+<header id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo" aria-label="Hebillas Gin&amp;Jes">
+      <span class="logo-top">Hebillas</span>
+      <span class="logo-bot">GIN<em>&amp;</em>JES</span>
+    </a>
+    <nav class="nav-links" aria-label="Navegación principal">
+      <a href="#inicio">Inicio</a>
+      <a href="#tienda">Tienda</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <div class="nav-right">
+      <div class="search-wrap" role="search">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <input id="search-input" type="search" placeholder="Buscar producto..." aria-label="Buscar" oninput="searchProducts(this.value)" />
       </div>
+      <button class="cart-btn" onclick="toggleCart()" aria-label="Abrir carrito">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <span id="cart-count" aria-live="polite">0</span>
+      </button>
+      <button class="menu-btn" onclick="toggleMenu()" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-    <!-- mobile menu -->
-    <div id="mobile-menu">
-      <a href="#inicio" onclick="toggleMenu()">Inicio</a>
-      <a href="#tienda" onclick="toggleMenu()">Tienda</a>
-      <a href="#nosotros" onclick="toggleMenu()">Nosotros</a>
-      <a href="#contacto" onclick="toggleMenu()">Contacto</a>
-    </div>
-  </header>
+  </div>
+  <nav id="mobile-menu" aria-label="Menú móvil">
+    <a href="#inicio" onclick="toggleMenu()">Inicio</a>
+    <a href="#tienda" onclick="toggleMenu()">Tienda</a>
+    <a href="#nosotros" onclick="toggleMenu()">Nosotros</a>
+    <a href="#contacto" onclick="toggleMenu()">Contacto</a>
+  </nav>
+</header>
 
-  <!-- ── HERO ── -->
-  <section id="inicio" class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-content">
-      <p class="hero-eyebrow">Lima, Perú &nbsp;·&nbsp; Est. 1990</p>
-      <h1 class="hero-title">Hebillas<br><em>Gin<span>&amp;</span>Jes</em></h1>
-      <p class="hero-sub">Fabricación, manufactura y comercialización de<br>hebillas y herrajes de calidad para la industria<br>de calzado, textil y confección.</p>
-      <div class="hero-actions">
-        <a href="#tienda" class="btn-primary">Explorar tienda</a>
-        <a href="#nosotros" class="btn-ghost">Nuestra historia</a>
+<!-- ── HERO ── -->
+<main>
+<section id="inicio" class="hero" aria-label="Sección principal">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="hero-badge" role="text">Lima, Perú &nbsp;·&nbsp; Est. 1990</div>
+    <h1 class="hero-title">
+      Hebillas
+      <em>Gin<span>&amp;</span>Jes</em>
+    </h1>
+    <p class="hero-desc">
+      Fabricación y comercialización de hebillas y herrajes de calidad
+      para la industria de calzado, textil, cuero y confección.
+    </p>
+    <div class="hero-ctas">
+      <a href="#tienda" class="btn btn-gold">Explorar tienda</a>
+      <a href="#nosotros" class="btn btn-outline">Nuestra historia</a>
+    </div>
+  </div>
+  <div class="hero-scroll" aria-hidden="true">
+    <span>Scroll</span>
+    <div class="scroll-bar"></div>
+  </div>
+</section>
+
+<!-- ── TICKER ── -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>Hebillas para Calzado</span><span class="dot">◆</span>
+    <span>Herrajes de Zamak</span><span class="dot">◆</span>
+    <span>Ojalillos</span><span class="dot">◆</span>
+    <span>Remaches</span><span class="dot">◆</span>
+    <span>Placas Decorativas</span><span class="dot">◆</span>
+    <span>Argollas</span><span class="dot">◆</span>
+    <span>Trabas</span><span class="dot">◆</span>
+    <span>Broches</span><span class="dot">◆</span>
+    <span>Pasantes</span><span class="dot">◆</span>
+    <span>Jaladores</span><span class="dot">◆</span>
+    <span>Listones</span><span class="dot">◆</span>
+    <span>Delivery Lima y provincias</span><span class="dot">◆</span>
+    <!-- dup -->
+    <span>Hebillas para Calzado</span><span class="dot">◆</span>
+    <span>Herrajes de Zamak</span><span class="dot">◆</span>
+    <span>Ojalillos</span><span class="dot">◆</span>
+    <span>Remaches</span><span class="dot">◆</span>
+    <span>Placas Decorativas</span><span class="dot">◆</span>
+    <span>Argollas</span><span class="dot">◆</span>
+  </div>
+</div>
+
+<!-- ── STATS ── -->
+<section class="stats" aria-label="Números de la empresa">
+  <div class="stat">
+    <strong>+30</strong>
+    <span>Años de experiencia</span>
+  </div>
+  <div class="stat-div" aria-hidden="true"></div>
+  <div class="stat">
+    <strong>+500</strong>
+    <span>Clientes fieles</span>
+  </div>
+  <div class="stat-div" aria-hidden="true"></div>
+  <div class="stat">
+    <strong>+400</strong>
+    <span>Referencias</span>
+  </div>
+  <div class="stat-div" aria-hidden="true"></div>
+  <div class="stat">
+    <strong>2</strong>
+    <span>Locales en Lima</span>
+  </div>
+</section>
+
+<!-- ── TIENDA ── -->
+<section id="tienda" class="shop" aria-labelledby="tienda-ttl">
+  <div class="shop-top">
+    <div>
+      <p class="eyebrow">Catálogo</p>
+      <h2 id="tienda-ttl" class="sec-title">Nuestros <em>productos</em></h2>
+    </div>
+    <div class="shop-controls">
+      <div class="search-wrap mobile-search">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <input type="search" placeholder="Buscar..." aria-label="Buscar" oninput="searchProducts(this.value)" />
       </div>
-    </div>
-    <div class="hero-scroll">
-      <span>Desplazar</span>
-      <div class="scroll-line"></div>
-    </div>
-  </section>
-
-  <!-- ── TICKER ── -->
-  <div class="ticker">
-    <div class="ticker-track">
-      <span>Hebillas para Calzado</span>
-      <span class="dot">◆</span>
-      <span>Herrajes de Zamak</span>
-      <span class="dot">◆</span>
-      <span>Ojalillos</span>
-      <span class="dot">◆</span>
-      <span>Remaches</span>
-      <span class="dot">◆</span>
-      <span>Placas Decorativas</span>
-      <span class="dot">◆</span>
-      <span>Argollas</span>
-      <span class="dot">◆</span>
-      <span>Trabas</span>
-      <span class="dot">◆</span>
-      <span>Broches</span>
-      <span class="dot">◆</span>
-      <span>Pasantes</span>
-      <span class="dot">◆</span>
-      <span>Jaladores</span>
-      <span class="dot">◆</span>
-      <span>Listones</span>
-      <span class="dot">◆</span>
-      <span>Delivery Lima y provincias</span>
-      <span class="dot">◆</span>
-      <!-- duplicate -->
-      <span>Hebillas para Calzado</span>
-      <span class="dot">◆</span>
-      <span>Herrajes de Zamak</span>
-      <span class="dot">◆</span>
-      <span>Ojalillos</span>
-      <span class="dot">◆</span>
-      <span>Remaches</span>
-      <span class="dot">◆</span>
-      <span>Placas Decorativas</span>
-      <span class="dot">◆</span>
-      <span>Argollas</span>
-      <span class="dot">◆</span>
+      <select class="sort-select" onchange="sortProducts(this.value)" aria-label="Ordenar productos">
+        <option value="default">Ordenar</option>
+        <option value="price-asc">Precio ↑</option>
+        <option value="price-desc">Precio ↓</option>
+        <option value="name-asc">A → Z</option>
+      </select>
+      <div class="view-btns" role="group" aria-label="Vista">
+        <button class="view-btn active" id="btn-grid" onclick="setView('grid')" aria-label="Vista cuadrícula" aria-pressed="true">⊞</button>
+        <button class="view-btn" id="btn-list" onclick="setView('list')" aria-label="Vista lista" aria-pressed="false">☰</button>
+      </div>
     </div>
   </div>
 
-  <!-- ── STATS ── -->
-  <section class="stats">
-    <div class="stat">
-      <strong>+30</strong>
-      <span>Años de experiencia</span>
-    </div>
-    <div class="stat-divider"></div>
-    <div class="stat">
-      <strong>+500</strong>
-      <span>Clientes fieles</span>
-    </div>
-    <div class="stat-divider"></div>
-    <div class="stat">
-      <strong>+400</strong>
-      <span>Referencias</span>
-    </div>
-    <div class="stat-divider"></div>
-    <div class="stat">
-      <strong>2</strong>
-      <span>Locales en Lima</span>
-    </div>
-  </section>
-
-  <!-- ── TIENDA ── -->
-  <section id="tienda" class="shop-section">
-    <div class="shop-header">
-      <div>
-        <p class="section-eyebrow">Catálogo</p>
-        <h2 class="section-title">Tienda</h2>
+  <div class="shop-body">
+    <!-- SIDEBAR -->
+    <aside class="sidebar" aria-label="Filtros">
+      <div class="sidebar-block">
+        <p class="sidebar-ttl">Categorías</p>
+        <ul id="sidebar-cats" role="list">
+          <li><button class="cat-btn active" data-cat="all" onclick="filterProducts(null)">Todos <span id="count-all"></span></button></li>
+          <li><button class="cat-btn" data-cat="Hebillas" onclick="filterProducts('Hebillas')">Hebillas <span id="count-Hebillas"></span></button></li>
+          <li><button class="cat-btn" data-cat="Placas" onclick="filterProducts('Placas')">Placas <span id="count-Placas"></span></button></li>
+          <li><button class="cat-btn" data-cat="Listones" onclick="filterProducts('Listones')">Listones <span id="count-Listones"></span></button></li>
+          <li><button class="cat-btn" data-cat="Jaladores" onclick="filterProducts('Jaladores')">Jaladores <span id="count-Jaladores"></span></button></li>
+          <li><button class="cat-btn" data-cat="Aplicaciones" onclick="filterProducts('Aplicaciones')">Aplicaciones <span id="count-Aplicaciones"></span></button></li>
+          <li><button class="cat-btn" data-cat="Pasantes" onclick="filterProducts('Pasantes')">Pasantes <span id="count-Pasantes"></span></button></li>
+          <li><button class="cat-btn" data-cat="Adornos con remaches" onclick="filterProducts('Adornos con remaches')">Adornos <span id="count-Adornos con remaches"></span></button></li>
+          <li><button class="cat-btn" data-cat="Ovalines" onclick="filterProducts('Ovalines')">Ovalines <span id="count-Ovalines"></span></button></li>
+          <li><button class="cat-btn" data-cat="Hebillas rodillo" onclick="filterProducts('Hebillas rodillo')">Hebillas rodillo <span id="count-Hebillas rodillo"></span></button></li>
+          <li><button class="cat-btn" data-cat="Trabas" onclick="filterProducts('Trabas')">Trabas <span id="count-Trabas"></span></button></li>
+          <li><button class="cat-btn" data-cat="Insumos Galvánicos y Otros" onclick="filterProducts('Insumos Galvánicos y Otros')">Insumos <span id="count-Insumos Galvánicos y Otros"></span></button></li>
+        </ul>
       </div>
-      <div class="shop-controls">
-        <div class="search-wrap mobile-search">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-          <input type="text" placeholder="Buscar..." oninput="searchProducts(this.value)" />
+      <div class="sidebar-block">
+        <p class="sidebar-ttl">Precio (S/)</p>
+        <div class="price-row">
+          <input type="number" id="price-min" placeholder="Mín" min="0" aria-label="Precio mínimo" />
+          <span aria-hidden="true">—</span>
+          <input type="number" id="price-max" placeholder="Máx" min="0" aria-label="Precio máximo" />
         </div>
-        <select class="sort-select" onchange="sortProducts(this.value)">
-          <option value="default">Ordenar</option>
-          <option value="price-asc">Precio ↑</option>
-          <option value="price-desc">Precio ↓</option>
-          <option value="name-asc">A → Z</option>
-        </select>
-        <div class="view-toggle">
-          <button onclick="setView('grid')" id="btn-grid" class="active" title="Grilla">⊞</button>
-          <button onclick="setView('list')" id="btn-list" title="Lista">☰</button>
-        </div>
+        <button class="filter-btn" onclick="filterByPrice()">Aplicar filtro</button>
+      </div>
+      <div class="sidebar-block sid-contact">
+        <p class="sidebar-ttl">Asesoría directa</p>
+        <a href="https://wa.me/51920884528" target="_blank" rel="noopener noreferrer" class="wa-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          +51 920 884 528
+        </a>
+        <a href="https://wa.me/51909001592" target="_blank" rel="noopener noreferrer" class="wa-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          +51 909 001 592
+        </a>
+      </div>
+    </aside>
+
+    <!-- GRID -->
+    <div class="shop-main">
+      <div class="results-bar">
+        <p id="results-count" aria-live="polite"></p>
+      </div>
+      <div id="loading-state" class="loading" aria-label="Cargando...">
+        <div class="spinner" aria-hidden="true"></div>
+        <p>Cargando colección…</p>
+      </div>
+      <div id="product-grid" class="pgrid hidden" role="list"></div>
+      <div id="pagination" class="pagination hidden" role="navigation" aria-label="Paginación"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── NOSOTROS ── -->
+<section id="nosotros" class="about" aria-labelledby="about-ttl">
+  <div class="about-inner">
+    <div>
+      <p class="eyebrow">Nuestra historia</p>
+      <h2 id="about-ttl" class="sec-title">Quiénes <em>somos</em></h2>
+      <span class="rule" aria-hidden="true"></span>
+      <p>Somos una empresa con <strong>más de 30 años de experiencia</strong>, dedicada a la fabricación, manufactura y comercialización de hebillas y herrajes de calidad para la industria de calzado, textil, cuero y confección.</p>
+      <p>Somos uno de los <strong>pioneros en el mercado peruano</strong>. Contamos con elevados estándares de calidad y personal altamente calificado que te asesorará en cada compra.</p>
+      <p class="about-quote">«Este círculo de confianza, respeto y lealtad nos ha dado la estabilidad que nos permite liderar este mercado a nivel nacional e internacional.»</p>
+    </div>
+    <div>
+      <p class="eyebrow" style="padding-top:3.5rem">Nuestros productos</p>
+      <div class="tags" role="list">
+        <span class="tag" role="listitem">Hebillas</span>
+        <span class="tag" role="listitem">Herrajes</span>
+        <span class="tag" role="listitem">Ojalillos</span>
+        <span class="tag" role="listitem">Remaches</span>
+        <span class="tag" role="listitem">Placas</span>
+        <span class="tag" role="listitem">Argollas</span>
+        <span class="tag" role="listitem">Trabas</span>
+        <span class="tag" role="listitem">Broches</span>
+        <span class="tag" role="listitem">Jaladores</span>
+        <span class="tag" role="listitem">Listones</span>
+        <span class="tag" role="listitem">Pasantes</span>
+        <span class="tag" role="listitem">Adornos</span>
       </div>
     </div>
+  </div>
+</section>
 
-    <div class="shop-body">
-      <!-- SIDEBAR -->
-      <aside class="shop-sidebar">
-        <div class="sidebar-block">
-          <p class="sidebar-label">Categorías</p>
-          <ul id="sidebar-cats">
-            <li><button class="cat-btn active" data-cat="all" onclick="filterProducts(null)">Todos <span id="count-all"></span></button></li>
-            <li><button class="cat-btn" data-cat="Hebillas" onclick="filterProducts('Hebillas')">Hebillas <span id="count-Hebillas"></span></button></li>
-            <li><button class="cat-btn" data-cat="Placas" onclick="filterProducts('Placas')">Placas <span id="count-Placas"></span></button></li>
-            <li><button class="cat-btn" data-cat="Listones" onclick="filterProducts('Listones')">Listones <span id="count-Listones"></span></button></li>
-            <li><button class="cat-btn" data-cat="Jaladores" onclick="filterProducts('Jaladores')">Jaladores <span id="count-Jaladores"></span></button></li>
-            <li><button class="cat-btn" data-cat="Aplicaciones" onclick="filterProducts('Aplicaciones')">Aplicaciones <span id="count-Aplicaciones"></span></button></li>
-            <li><button class="cat-btn" data-cat="Pasantes" onclick="filterProducts('Pasantes')">Pasantes <span id="count-Pasantes"></span></button></li>
-            <li><button class="cat-btn" data-cat="Adornos con remaches" onclick="filterProducts('Adornos con remaches')">Adornos <span id="count-Adornos con remaches"></span></button></li>
-            <li><button class="cat-btn" data-cat="Ovalines" onclick="filterProducts('Ovalines')">Ovalines <span id="count-Ovalines"></span></button></li>
-            <li><button class="cat-btn" data-cat="Hebillas rodillo" onclick="filterProducts('Hebillas rodillo')">Hebillas rodillo <span id="count-Hebillas rodillo"></span></button></li>
-            <li><button class="cat-btn" data-cat="Trabas" onclick="filterProducts('Trabas')">Trabas <span id="count-Trabas"></span></button></li>
-            <li><button class="cat-btn" data-cat="Insumos Galvánicos y Otros" onclick="filterProducts('Insumos Galvánicos y Otros')">Insumos <span id="count-Insumos Galvánicos y Otros"></span></button></li>
-          </ul>
-        </div>
-        <div class="sidebar-block">
-          <p class="sidebar-label">Precio (S/)</p>
-          <div class="price-range">
-            <input type="number" id="price-min" placeholder="Mín" min="0" />
-            <span>—</span>
-            <input type="number" id="price-max" placeholder="Máx" min="0" />
-          </div>
-          <button class="filter-btn" onclick="filterByPrice()">Aplicar filtro</button>
-        </div>
-        <div class="sidebar-block sidebar-contact">
-          <p class="sidebar-label">¿Necesitas asesoría?</p>
-          <a href="https://wa.me/51920884528" target="_blank" class="wa-link">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+<!-- ── LOCALES ── -->
+<section class="locales" aria-labelledby="locales-ttl">
+  <div class="locales-inner">
+    <div class="sec-head">
+      <p class="eyebrow">Lima, Perú</p>
+      <h2 id="locales-ttl" class="sec-title">Encuéntranos</h2>
+      <span class="rule" style="margin: var(--s4) auto" aria-hidden="true"></span>
+    </div>
+    <div class="locales-grid">
+      <article class="local-card">
+        <div class="local-num" aria-hidden="true">01</div>
+        <div class="local-info">
+          <h3>CC. Virrey Amat</h3>
+          <p>Puesto 223</p>
+          <a href="https://wa.me/51920884528" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Virrey Amat">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             +51 920 884 528
           </a>
-          <a href="https://wa.me/51909001592" target="_blank" class="wa-link">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </div>
+      </article>
+      <article class="local-card">
+        <div class="local-num" aria-hidden="true">02</div>
+        <div class="local-info">
+          <h3>CC. Perú Futuro</h3>
+          <p>Puesto 309 – 310</p>
+          <a href="https://wa.me/51909001592" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Perú Futuro">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             +51 909 001 592
           </a>
         </div>
-      </aside>
-
-      <!-- GRID -->
-      <div class="shop-main">
-        <div class="results-bar">
-          <p id="results-count"></p>
-        </div>
-        <div id="loading-state" class="loading">
-          <div class="spinner"></div>
-          <p>Cargando colección...</p>
-        </div>
-        <div id="product-grid" class="product-grid hidden"></div>
-        <div id="pagination" class="pagination hidden"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── NOSOTROS ── -->
-  <section id="nosotros" class="about-section">
-    <div class="about-inner">
-      <div class="about-text">
-        <p class="section-eyebrow">Nuestra historia</p>
-        <h2 class="section-title">Quiénes<br><em>somos</em></h2>
-        <div class="rule"></div>
-        <p>Somos una empresa con <strong>más de 30 años de experiencia</strong>, dedicada a la fabricación, manufactura y comercialización de hebillas y herrajes de calidad para la industria de calzado, textil, cuero y confección.</p>
-        <p>Somos uno de los <strong>pioneros en el mercado peruano</strong>. Contamos con elevados estándares de calidad y un personal altamente calificado que estará encantado de asesorarte.</p>
-        <p class="about-quote">«Este círculo de confianza, respeto y lealtad nos ha generado la estabilidad que nos permite liderar este mercado a nivel nacional e internacional.»</p>
-      </div>
-      <div class="about-tags">
-        <p class="sidebar-label">Nuestros productos</p>
-        <div class="tag-cloud">
-          <span>Hebillas</span><span>Herrajes</span><span>Ojalillos</span>
-          <span>Remaches</span><span>Placas</span><span>Argollas</span>
-          <span>Trabas</span><span>Broches</span><span>Jaladores</span>
-          <span>Listones</span><span>Pasantes</span><span>Adornos</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── LOCALES ── -->
-  <section class="locales-section">
-    <div class="locales-inner">
-      <div class="section-head">
-        <p class="section-eyebrow">Lima, Perú</p>
-        <h2 class="section-title">Encuéntranos</h2>
-      </div>
-      <div class="locales-grid">
-        <div class="local-card">
-          <div class="local-num">01</div>
-          <div class="local-info">
-            <h3>CC. Virrey Amat</h3>
-            <p>Puesto 223</p>
-            <a href="https://wa.me/51920884528" target="_blank">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-              +51 920 884 528
-            </a>
-          </div>
-        </div>
-        <div class="local-card">
-          <div class="local-num">02</div>
-          <div class="local-info">
-            <h3>CC. Perú Futuro</h3>
-            <p>Puesto 309 – 310</p>
-            <a href="https://wa.me/51909001592" target="_blank">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-              +51 909 001 592
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── CONTACTO ── -->
-  <section id="contacto" class="contact-section">
-    <div class="contact-inner">
-      <div class="section-head">
-        <p class="section-eyebrow">Escríbenos</p>
-        <h2 class="section-title">Contacto</h2>
-      </div>
-      <form class="contact-form" onsubmit="handleContact(event)">
-        <input type="text" placeholder="Nombre o empresa" />
-        <input type="email" placeholder="Correo electrónico" />
-        <input type="tel" placeholder="WhatsApp / Teléfono" />
-        <textarea rows="4" placeholder="¿Qué producto necesitas?"></textarea>
-        <button type="submit">Enviar consulta</button>
-      </form>
-    </div>
-  </section>
-
-  <!-- ── FOOTER ── -->
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <span class="logo-top">HEBILLAS</span>
-        <span class="logo-bottom">GIN<em>&amp;</em>JES</span>
-        <p>Más de 30 años fabricando hebillas<br>y herrajes de calidad. Lima, Perú.</p>
-      </div>
-      <div class="footer-col">
-        <p class="footer-label">Locales</p>
-        <span>CC. Virrey Amat — Puesto 223</span>
-        <span>CC. Perú Futuro — Puesto 309-310</span>
-      </div>
-      <div class="footer-col">
-        <p class="footer-label">WhatsApp</p>
-        <a href="https://wa.me/51920884528">+51 920 884 528</a>
-        <a href="https://wa.me/51909001592">+51 909 001 592</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>© 2026 Hebillas Gin&amp;Jes. Todos los derechos reservados.</p>
-    </div>
-  </footer>
-
-  <!-- ── CART ── -->
-  <div id="cart-sidebar">
-    <div class="cart-head">
-      <h3>Carrito</h3>
-      <button onclick="toggleCart()">✕</button>
-    </div>
-    <div id="cart-items"><p class="cart-empty">Tu carrito está vacío.</p></div>
-    <div class="cart-foot">
-      <p>Total <span id="cart-total">S/ 0.00</span></p>
-      <a href="https://wa.me/51920884528?text=Hola%2C%20quiero%20hacer%20un%20pedido" target="_blank">Pedir por WhatsApp</a>
+      </article>
     </div>
   </div>
-  <div id="cart-overlay" onclick="toggleCart()"></div>
+</section>
 
-  <!-- ── MODAL ── -->
-  <div id="product-modal">
-    <div class="modal-backdrop" onclick="closeModal()"></div>
-    <div class="modal-box">
-      <button class="modal-close" onclick="closeModal()">✕</button>
-      <div class="modal-grid">
-        <div class="modal-img-wrap">
-          <img id="modal-img" src="" alt="" />
-        </div>
-        <div class="modal-info">
-          <p id="modal-cat"></p>
-          <h3 id="modal-name"></h3>
-          <p id="modal-code"></p>
-          <p id="modal-desc"></p>
-          <p id="modal-price"></p>
-          <button id="modal-btn">+ Agregar al carrito</button>
-          <a id="modal-wa" href="" target="_blank">Consultar por WhatsApp</a>
-        </div>
+<!-- ── CONTACTO ── -->
+<section id="contacto" class="contact" aria-labelledby="contact-ttl">
+  <div class="contact-inner">
+    <div class="sec-head">
+      <p class="eyebrow">Escríbenos</p>
+      <h2 id="contact-ttl" class="sec-title">Contáctanos</h2>
+      <span class="rule" style="margin: var(--s4) auto" aria-hidden="true"></span>
+    </div>
+    <form class="cform" onsubmit="handleContact(event)" novalidate>
+      <input type="text" placeholder="Nombre o empresa" autocomplete="name" required />
+      <input type="email" placeholder="Correo electrónico" autocomplete="email" required />
+      <input type="tel" placeholder="WhatsApp / Teléfono" autocomplete="tel" />
+      <textarea rows="4" placeholder="¿Qué producto necesitas?"></textarea>
+      <button type="submit">Enviar consulta</button>
+    </form>
+  </div>
+</section>
+</main>
+
+<!-- ── FOOTER ── -->
+<footer role="contentinfo">
+  <div class="footer-inner">
+    <div class="foot-brand">
+      <span class="logo-top">Hebillas</span>
+      <span class="logo-bot">GIN<em>&amp;</em>JES</span>
+      <p>Más de 30 años fabricando y comercializando hebillas y herrajes de calidad. Lima, Perú.</p>
+    </div>
+    <div class="foot-col">
+      <p class="foot-col-ttl">Locales</p>
+      <span>CC. Virrey Amat — Puesto 223</span>
+      <span>CC. Perú Futuro — Puesto 309-310</span>
+    </div>
+    <div class="foot-col">
+      <p class="foot-col-ttl">WhatsApp</p>
+      <a href="https://wa.me/51920884528" target="_blank" rel="noopener noreferrer">+51 920 884 528</a>
+      <a href="https://wa.me/51909001592" target="_blank" rel="noopener noreferrer">+51 909 001 592</a>
+    </div>
+  </div>
+  <div class="footer-copy">&copy; 2026 Hebillas Gin&amp;Jes. Todos los derechos reservados.</div>
+</footer>
+
+<!-- ── CART ── -->
+<aside id="cart-sidebar" aria-label="Carrito de compras" role="complementary">
+  <div class="cart-hd">
+    <h3>Tu carrito</h3>
+    <button onclick="toggleCart()" aria-label="Cerrar carrito">✕</button>
+  </div>
+  <div id="cart-items">
+    <p class="cart-empty">Tu carrito está vacío.</p>
+  </div>
+  <div class="cart-ft">
+    <p>Total <span id="cart-total">S/ 0.00</span></p>
+    <a href="https://wa.me/51920884528?text=Hola%2C%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener noreferrer">Pedir por WhatsApp</a>
+  </div>
+</aside>
+<div id="cart-overlay" onclick="toggleCart()" aria-hidden="true"></div>
+
+<!-- ── MODAL ── -->
+<div id="product-modal" role="dialog" aria-modal="true" aria-labelledby="modal-name">
+  <div class="modal-bg" onclick="closeModal()"></div>
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()" aria-label="Cerrar">✕</button>
+    <div class="modal-grid">
+      <div class="modal-img-w">
+        <img id="modal-img" src="" alt="" loading="lazy" />
+      </div>
+      <div class="modal-info">
+        <p id="modal-cat"></p>
+        <h3 id="modal-name"></h3>
+        <p id="modal-code"></p>
+        <p id="modal-desc"></p>
+        <p id="modal-price"></p>
+        <button id="modal-btn">+ Agregar al carrito</button>
+        <a id="modal-wa" href="" target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a>
       </div>
     </div>
   </div>
+</div>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="js/supabase.js"></script>
-  <script src="js/products.js"></script>
-  <script src="js/cart.js"></script>
-  <script src="js/app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase.js"></script>
+<script src="js/products.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>
