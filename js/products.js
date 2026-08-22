@@ -1,79 +1,100 @@
-// Base de datos de productos
+// 🧵 Catálogo de Gin&Jes
+// TODO: Reemplaza las imágenes con las fotos reales de tu catálogo de Google Drive
 const products = [
   {
     id: 1,
-    name: "Producto Artesanal A",
-    price: 35.00,
-    image: "https://via.placeholder.com/300x200?text=Producto+1",
-    category: "Costura"
+    name: "Hilo de Seda Premium",
+    price: 12.50,
+    image: "https://via.placeholder.com/300x300/FEF3C7/92400E?text=Hilo+Seda",
+    category: "Hilos",
+    description: "Hilo de seda suave, ideal para bordados y costura fina."
   },
   {
     id: 2,
-    name: "Kit Premium B",
-    price: 58.00,
-    image: "https://via.placeholder.com/300x200?text=Producto+2",
-    category: "Kits"
+    name: "Set de Agujas Patchwork",
+    price: 18.00,
+    image: "https://via.placeholder.com/300x300/FEF3C7/92400E?text=Agujas",
+    category: "Agujas",
+    description: "Set de 12 agujas de diferentes calibres para patchwork."
   },
   {
     id: 3,
-    name: "Accesorio Deluxe C",
-    price: 22.00,
-    image: "https://via.placeholder.com/300x200?text=Producto+3",
-    category: "Accesorios"
+    name: "Tela Algodón Estampada",
+    price: 25.00,
+    image: "https://via.placeholder.com/300x300/FEF3C7/92400E?text=Tela+Algodón",
+    category: "Telas",
+    description: "Tela 100% algodón con estampado floral, 1 metro."
   },
   {
     id: 4,
-    name: "Set Especial D",
-    price: 75.00,
-    image: "https://via.placeholder.com/300x200?text=Producto+4",
-    category: "Sets"
+    name: "Kit Iniciación Costura",
+    price: 55.00,
+    image: "https://via.placeholder.com/300x300/FEF3C7/92400E?text=Kit+Inicio",
+    category: "Kits",
+    description: "Todo lo que necesitas para empezar: tijeras, agujas, hilos y dedal."
   },
   {
     id: 5,
-    name: "Producto Básico E",
-    price: 18.00,
-    image: "https://via.placeholder.com/300x200?text=Producto+5",
-    category: "Básicos"
+    name: "Botones Nácar 20mm",
+    price: 8.00,
+    image: "https://via.placeholder.com/300x300/FEF3C7/92400E?text=Botones",
+    category: "Botones",
+    description: "Pack de 10 botones de nácar natural, 20mm de diámetro."
   },
   {
     id: 6,
-    name: "Edición Limitada F",
-    price: 95.00,
-    image: "https://via.placeholder.com/300x200?text=Producto+6",
-    category: "Edición Limitada"
+    name: "Cierre Invisible 30cm",
+    price: 5.50,
+    image: "https://via.placeholder.com/300x300/FEF3C7/92400E?text=Cierre",
+    category: "Cierres",
+    description: "Cierre invisible de alta durabilidad, disponible en 12 colores."
   },
   {
     id: 7,
-    name: "Colección Premium G",
-    price: 110.00,
-    image: "https://via.placeholder.com/300x200?text=Producto+7",
-    category: "Premium"
+    name: "Encaje Vintage Blanco",
+    price: 15.00,
+    image: "https://via.placeholder.com/300x300/FEF3C7/92400E?text=Encaje",
+    category: "Encajes",
+    description: "Encaje de algodón estilo vintage, 2 metros."
   },
   {
     id: 8,
-    name: "Accesorio Clásico H",
-    price: 30.00,
-    image: "https://via.placeholder.com/300x200?text=Producto+8",
-    category: "Clásicos"
+    name: "Kit Bordado Completo",
+    price: 78.00,
+    image: "https://via.placeholder.com/300x300/FEF3C7/92400E?text=Kit+Bordado",
+    category: "Kits",
+    description: "Kit profesional de bordado con bastidor, agujas e hilos.",
+    badge: "⭐ Favorito"
   }
 ];
 
-// Renderizar productos en el grid
-function renderProducts() {
+let filteredProducts = [...products];
+
+function filterProducts(category) {
+  filteredProducts = category ? products.filter(p => p.category === category) : [...products];
+  renderProducts(filteredProducts);
+  document.getElementById('productos').scrollIntoView({ behavior: 'smooth' });
+}
+
+function renderProducts(list = products) {
   const grid = document.getElementById('product-grid');
-  grid.innerHTML = products.map(p => `
-    <div class="product-card bg-white border rounded-xl overflow-hidden cursor-pointer" onclick="addToCart(${p.id})">
-      <img src="${p.image}" alt="${p.name}" />
+  grid.innerHTML = list.map(p => `
+    <div class="product-card bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm">
+      <div class="relative">
+        <img src="${p.image}" alt="${p.name}" />
+        ${p.badge ? `<span class="absolute top-2 left-2 bg-amber-600 text-white text-xs px-2 py-1 rounded-full">${p.badge}</span>` : ''}
+      </div>
       <div class="p-4">
-        <p class="text-xs text-rose-400 font-medium mb-1">${p.category}</p>
-        <h3 class="font-semibold text-sm mb-2">${p.name}</h3>
+        <p class="text-xs text-amber-600 font-medium mb-1 uppercase tracking-wide">${p.category}</p>
+        <h3 class="font-semibold text-sm mb-1 text-gray-800">${p.name}</h3>
+        <p class="text-gray-400 text-xs mb-3">${p.description}</p>
         <div class="flex justify-between items-center">
-          <span class="font-bold text-rose-600">S/ ${p.price.toFixed(2)}</span>
-          <button class="text-xs bg-rose-500 text-white px-3 py-1 rounded-full hover:bg-rose-600 transition">Agregar</button>
+          <span class="font-bold text-amber-700 text-lg">S/ ${p.price.toFixed(2)}</span>
+          <button onclick="addToCart(${p.id})" class="text-xs bg-amber-700 text-white px-4 py-2 rounded-full hover:bg-amber-800 transition">+ Agregar</button>
         </div>
       </div>
     </div>
   `).join('');
 }
 
-document.addEventListener('DOMContentLoaded', renderProducts);
+document.addEventListener('DOMContentLoaded', () => renderProducts());
