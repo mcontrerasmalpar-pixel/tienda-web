@@ -32,30 +32,27 @@ async function loadProductsFromSupabase() {
     }
 
     if (!data || data.length === 0) {
-      console.warn('[Supabase] Query exitosa pero devolvio 0 productos. Verifica RLS y activo=true.');
+      console.warn('[Supabase] Query exitosa pero devolvió 0 productos. Verifica RLS y activo=true.');
       return null;
     }
 
     console.log('[Supabase] ' + data.length + ' productos cargados correctamente.');
-
-    // Mostrar primeras 3 URLs para debug de imágenes
-    console.group('[Supabase] Debug imagen_url (primeros 3)');
-    data.slice(0, 3).forEach(p => {
-      const url = getImageUrl(p.imagen_url);
-      console.log(p.nombre + '\n  BD: ' + p.imagen_url + '\n  URL: ' + url);
-    });
-    console.groupEnd();
-
     return data;
   } catch (e) {
-    console.error('[Supabase] Excepcion:', e.message);
+    console.error('[Supabase] Excepción:', e.message);
     return null;
   }
 }
 
 function getImageUrl(imagePath) {
   if (!imagePath) return '';
+  // Si ya es una URL completa, devolverla tal cual
   if (imagePath.startsWith('http')) return imagePath;
-  const { data } = supabase.storage.from('productos').getPublicUrl(imagePath);
+  // Codificar cada segmento del path por separado para preservar las barras /
+  const encodedPath = imagePath
+    .split('/')
+    .map(segment => encodeURIComponent(segment))
+    .join('/');
+  const { data } = supabase.storage.from('productos').getPublicUrl(encodedPath);
   return data.publicUrl;
 }
