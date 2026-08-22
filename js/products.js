@@ -2,31 +2,44 @@ const ITEMS_PER_PAGE = 12;
 let allProducts = [], filteredProducts = [], currentPage = 1;
 let currentView = 'grid', currentSort = 'default', currentSearch = '', currentCategory = null;
 
+// SVG placeholder inline — evita petición externa a via.placeholder.com
+const PLACEHOLDER_SVG = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Crect width='400' height='400' fill='%230d0d0d'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='28' fill='%23C9A84C'%3EGin%26amp%3BJes%3C/text%3E%3C/svg%3E`;
+
 const fallbackProducts = [
   { id:1,  nombre:'Hebilla para Correa Dorada',    precio:5.50, imagen_url:'https://hebillasginjes.com/wp-content/uploads/HCORC-00024.jpg', categoria:'Hebillas',              descripcion:'Hebilla metálica dorada de zamak. Alta resistencia y acabado brillante.', codigo:'HCORC-00024', destacado:true  },
-  { id:2,  nombre:'Hebilla Rodillo Plateada',       precio:6.00, imagen_url:'https://via.placeholder.com/400x400/0d0d0d/C9A84C?text=Gin%26Jes', categoria:'Hebillas rodillo',    descripcion:'Hebilla tipo rodillo de zamak para correas y cinturones.',               codigo:'HROD-00001',  destacado:false },
-  { id:3,  nombre:'Placa Decorativa Premium',       precio:3.50, imagen_url:'https://via.placeholder.com/400x400/0d0d0d/C9A84C?text=Gin%26Jes', categoria:'Placas',             descripcion:'Placa decorativa de zamak para bolsos y calzado de alta gama.',          codigo:'PLAC-00001',  destacado:false },
-  { id:4,  nombre:'Jalador de Cierre',              precio:2.80, imagen_url:'https://via.placeholder.com/400x400/0d0d0d/C9A84C?text=Gin%26Jes', categoria:'Jaladores',          descripcion:'Jalador de cierre en zamak, compatible con cierres estándar.',           codigo:'JAL-00001',   destacado:false },
-  { id:5,  nombre:'Listón Decorativo Niquelado',    precio:4.20, imagen_url:'https://via.placeholder.com/400x400/0d0d0d/C9A84C?text=Gin%26Jes', categoria:'Listones',           descripcion:'Listón decorativo niquelado para calzado de cuero.',                     codigo:'LISTD-00014', destacado:true  },
-  { id:6,  nombre:'Pasante Simple 25mm',             precio:1.50, imagen_url:'https://via.placeholder.com/400x400/0d0d0d/C9A84C?text=Gin%26Jes', categoria:'Pasantes',          descripcion:'Pasante metálico para correas, ancho 25mm.',                             codigo:'PAS-00001',   destacado:false },
-  { id:7,  nombre:'Adorno con Remaches',             precio:7.00, imagen_url:'https://via.placeholder.com/400x400/0d0d0d/C9A84C?text=Gin%26Jes', categoria:'Adornos con remaches', descripcion:'Adorno decorativo con remaches para bolsos y marroquinería.',          codigo:'ADOCR-00015', destacado:true  },
-  { id:8,  nombre:'Ovalines Dorados',                precio:3.00, imagen_url:'https://via.placeholder.com/400x400/0d0d0d/C9A84C?text=Gin%26Jes', categoria:'Ovalines',          descripcion:'Ovalines metálicos para carteras y bolsos, acabado dorado.',             codigo:'OVA-00001',   destacado:false },
-  { id:9,  nombre:'Traba de Seguridad',              precio:4.50, imagen_url:'https://via.placeholder.com/400x400/0d0d0d/C9A84C?text=Gin%26Jes', categoria:'Trabas',            descripcion:'Traba de seguridad en zamak para correas y accesorios.',                 codigo:'TRAB-00001',  destacado:false },
-  { id:10, nombre:'Aplicación Floral',               precio:6.50, imagen_url:'https://via.placeholder.com/400x400/0d0d0d/C9A84C?text=Gin%26Jes', categoria:'Aplicaciones',      descripcion:'Aplicación decorativa floral para calzado y marroquinería.',             codigo:'APL-00001',   destacado:false },
-  { id:11, nombre:'Hebilla D-Ring 30mm',             precio:3.80, imagen_url:'https://via.placeholder.com/400x400/0d0d0d/C9A84C?text=Gin%26Jes', categoria:'Hebillas',          descripcion:'Hebilla D-Ring de 30mm para correas y mochilas.',                        codigo:'HCORC-00010', destacado:false },
-  { id:12, nombre:'Insumo Galvánico Gold',           precio:15.00, imagen_url:'https://via.placeholder.com/400x400/0d0d0d/C9A84C?text=Gin%26Jes', categoria:'Insumos Galvánicos y Otros', descripcion:'Insumo galvánico para acabado dorado en herrajes.', codigo:'INSG-00001', destacado:false }
+  { id:2,  nombre:'Hebilla Rodillo Plateada',       precio:6.00, imagen_url:null, categoria:'Hebillas rodillo',    descripcion:'Hebilla tipo rodillo de zamak para correas y cinturones.',               codigo:'HROD-00001',  destacado:false },
+  { id:3,  nombre:'Placa Decorativa Premium',       precio:3.50, imagen_url:null, categoria:'Placas',             descripcion:'Placa decorativa de zamak para bolsos y calzado de alta gama.',          codigo:'PLAC-00001',  destacado:false },
+  { id:4,  nombre:'Jalador de Cierre',              precio:2.80, imagen_url:null, categoria:'Jaladores',          descripcion:'Jalador de cierre en zamak, compatible con cierres estándar.',           codigo:'JAL-00001',   destacado:false },
+  { id:5,  nombre:'Listón Decorativo Niquelado',    precio:4.20, imagen_url:null, categoria:'Listones',           descripcion:'Listón decorativo niquelado para calzado de cuero.',                     codigo:'LISTD-00014', destacado:true  },
+  { id:6,  nombre:'Pasante Simple 25mm',            precio:1.50, imagen_url:null, categoria:'Pasantes',           descripcion:'Pasante metálico para correas, ancho 25mm.',                             codigo:'PAS-00001',   destacado:false },
+  { id:7,  nombre:'Adorno con Remaches',            precio:7.00, imagen_url:null, categoria:'Adornos con remaches', descripcion:'Adorno decorativo con remaches para bolsos y marroquinería.',          codigo:'ADOCR-00015', destacado:true  },
+  { id:8,  nombre:'Ovalines Dorados',               precio:3.00, imagen_url:null, categoria:'Ovalines',           descripcion:'Ovalines metálicos para carteras y bolsos, acabado dorado.',             codigo:'OVA-00001',   destacado:false },
+  { id:9,  nombre:'Traba de Seguridad',             precio:4.50, imagen_url:null, categoria:'Trabas',             descripcion:'Traba de seguridad en zamak para correas y accesorios.',                 codigo:'TRAB-00001',  destacado:false },
+  { id:10, nombre:'Aplicación Floral',              precio:6.50, imagen_url:null, categoria:'Aplicaciones',       descripcion:'Aplicación decorativa floral para calzado y marroquinería.',             codigo:'APL-00001',   destacado:false },
+  { id:11, nombre:'Hebilla D-Ring 30mm',            precio:3.80, imagen_url:null, categoria:'Hebillas',           descripcion:'Hebilla D-Ring de 30mm para correas y mochilas.',                        codigo:'HCORC-00010', destacado:false },
+  { id:12, nombre:'Insumo Galvánico Gold',          precio:15.00,imagen_url:null, categoria:'Insumos Galvánicos y Otros', descripcion:'Insumo galvánico para acabado dorado en herrajes.',           codigo:'INSG-00001',  destacado:false }
 ];
 
 async function initProducts() {
   document.getElementById('loading-state').style.display = 'block';
   document.getElementById('product-grid').classList.add('hidden');
-  const data = await loadProductsFromSupabase();
-  allProducts = data?.length ? data : fallbackProducts;
+
+  // Mostrar fallback inmediatamente para no bloquear la UI
+  allProducts = [...fallbackProducts];
   filteredProducts = [...allProducts];
   updateCounts();
   document.getElementById('loading-state').style.display = 'none';
   document.getElementById('product-grid').classList.remove('hidden');
   renderPage();
+
+  // Luego intentar Supabase en segundo plano
+  const data = await loadProductsFromSupabase();
+  if (data && data.length) {
+    allProducts = data;
+    filteredProducts = [...allProducts];
+    updateCounts();
+    renderPage();
+  }
 }
 
 function updateCounts() {
@@ -49,8 +62,8 @@ function filterProducts(cat) {
 }
 
 function searchProducts(q) { currentSearch = q.toLowerCase(); currentPage = 1; applyFilters(); }
-function sortProducts(v) { currentSort = v; applyFilters(); }
-function filterByPrice() { currentPage = 1; applyFilters(); }
+function sortProducts(v)   { currentSort = v; applyFilters(); }
+function filterByPrice()   { currentPage = 1; applyFilters(); }
 
 function applyFilters() {
   let list = [...allProducts];
@@ -102,11 +115,12 @@ function renderCards(list) {
     return;
   }
   grid.innerHTML = list.map((p, i) => {
-    const img = typeof getImageUrl === 'function' ? getImageUrl(p.imagen_url) : p.imagen_url;
+    const img = typeof getImageUrl === 'function' ? (getImageUrl(p.imagen_url) || PLACEHOLDER_SVG) : (p.imagen_url || PLACEHOLDER_SVG);
     const badge = p.destacado ? '<div class="card-badge">Destacado</div>' : '';
+    const errSrc = `this.src='${PLACEHOLDER_SVG}'`;
     if (currentView === 'list') {
       return `<div class="product-card list-card" style="animation-delay:${i*.04}s" onclick="openModal(${p.id})">
-        <div class="card-img"><img src="${img}" alt="${p.nombre}" loading="lazy" onerror="this.src='https://via.placeholder.com/200x200/0d0d0d/C9A84C?text=GJ'" /></div>
+        <div class="card-img"><img src="${img}" alt="${p.nombre}" loading="lazy" width="200" height="200" onerror="${errSrc}" /></div>
         <div class="card-body">
           <p class="card-cat">${p.categoria}</p>
           <p class="card-code">${p.codigo||''}</p>
@@ -120,7 +134,7 @@ function renderCards(list) {
     }
     return `<div class="product-card" style="animation-delay:${i*.04}s" onclick="openModal(${p.id})">
       ${badge}
-      <div class="card-img"><img src="${img}" alt="${p.nombre}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x400/0d0d0d/C9A84C?text=GJ'" /></div>
+      <div class="card-img"><img src="${img}" alt="${p.nombre}" loading="lazy" width="400" height="400" onerror="${errSrc}" /></div>
       <div class="card-body">
         <p class="card-cat">${p.categoria}</p>
         <p class="card-code">${p.codigo||''}</p>
@@ -153,7 +167,7 @@ function goToPage(p) {
 function openModal(id) {
   const p = allProducts.find(x => x.id === id);
   if (!p) return;
-  const img = typeof getImageUrl === 'function' ? getImageUrl(p.imagen_url) : p.imagen_url;
+  const img = typeof getImageUrl === 'function' ? (getImageUrl(p.imagen_url) || PLACEHOLDER_SVG) : (p.imagen_url || PLACEHOLDER_SVG);
   document.getElementById('modal-img').src = img;
   document.getElementById('modal-img').alt = p.nombre;
   document.getElementById('modal-cat').textContent = p.categoria;

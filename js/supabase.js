@@ -8,16 +8,26 @@ const SUPABASE_ANON_KEY = 'sb_publishable_5Bm47Sv2fKQJ4aoa3zPtYg_Ge3C5o4V';
 
 const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-// Cargar productos desde Supabase
+// Timeout helper — rechaza la promesa después de `ms` milisegundos
+function withTimeout(promise, ms) {
+  const timeout = new Promise((_, reject) =>
+    setTimeout(() => reject(new Error('Supabase timeout')), ms)
+  );
+  return Promise.race([promise, timeout]);
+}
+
+// Cargar productos desde Supabase (máx. 4 s; si falla → fallback inmediato)
 // Orden: destacados primero, luego por fecha de creación descendente
 async function loadProductsFromSupabase() {
   try {
-    const { data, error } = await supabase
+    const query = supabase
       .from('productos')
       .select('*')
       .eq('activo', true)
       .order('destacado', { ascending: false })
-      .order('created_at', { ascending: false });
+      .order('created_at',  { ascending: false });
+
+    const { data, error } = await withTimeout(query, 4000);
 
     if (error) {
       console.warn('Error Supabase:', error.message);
