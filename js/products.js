@@ -14,15 +14,21 @@ const fallbackProducts = [
 ];
 
 async function initProducts() {
-  // Mostrar skeleton mientras carga
   document.getElementById('loading-state').style.display = 'block';
   document.getElementById('product-grid').classList.add('hidden');
 
-  // Intentar Supabase PRIMERO (esperar hasta 5s)
   let data = null;
   try { data = await loadProductsFromSupabase(); } catch(e) { console.warn('Supabase error:', e); }
 
-  // Si Supabase responde con datos, usarlos; si no, usar fallback
+  // Normalizar campos: forzar precio a número
+  if (data && data.length) {
+    data = data.map(p => ({
+      ...p,
+      id:     Number(p.id),
+      precio: parseFloat(p.precio) || 0,
+    }));
+  }
+
   allProducts = (data && data.length) ? data : [...fallbackProducts];
   filteredProducts = [...allProducts];
 
@@ -34,15 +40,17 @@ async function initProducts() {
 }
 
 function updateCounts() {
-  // Actualizar contador "Todos"
   const elAll = document.getElementById('count-all');
   if (elAll) elAll.textContent = '(' + allProducts.length + ')';
 
-  // Actualizar contadores de cada categoría que exista en el DOM
   document.querySelectorAll('.cat-btn[data-cat]').forEach(btn => {
     const cat = btn.dataset.cat;
     if (cat === 'all') return;
-    const el = document.getElementById('count-' + cat);
+    // Buscar el span de conteo: primero por id basado en cat, luego dentro del propio botón
+    const safeId = cat.replace(/[^a-zA-Z0-9_-]/g, '_').toLowerCase();
+    const el = document.getElementById('count-' + safeId) ||
+               document.getElementById('count-' + cat) ||
+               btn.querySelector('span');
     if (!el) return;
     const n = allProducts.filter(p => p.categoria === cat).length;
     el.textContent = n > 0 ? '(' + n + ')' : '';
@@ -119,6 +127,7 @@ function renderCards(list) {
     const img = typeof getImageUrl === 'function' ? (getImageUrl(p.imagen_url) || PLACEHOLDER_SVG) : (p.imagen_url || PLACEHOLDER_SVG);
     const badge = p.destacado ? '<div class="card-badge">Destacado</div>' : '';
     const errSrc = `this.src='${PLACEHOLDER_SVG}'`;
+    const precio = parseFloat(p.precio) || 0;
     if (currentView === 'list') {
       return `<div class="product-card list-card" style="animation-delay:${i*.04}s" onclick="openModal(${p.id})">
         <div class="card-img"><img src="${img}" alt="${p.nombre}" loading="lazy" width="200" height="200" onerror="${errSrc}" /></div>
@@ -127,7 +136,7 @@ function renderCards(list) {
           <p class="card-code">${p.codigo||''}</p>
           <h4 class="card-name">${p.nombre}</h4>
           <div class="card-foot">
-            <span class="card-price">S/ ${p.precio.toFixed(2)}</span>
+            <span class="card-price">S/ ${precio.toFixed(2)}</span>
             <button class="card-add" onclick="event.stopPropagation();addToCart(${p.id})">+ Agregar</button>
           </div>
         </div>
@@ -141,7 +150,7 @@ function renderCards(list) {
         <p class="card-code">${p.codigo||''}</p>
         <h4 class="card-name">${p.nombre}</h4>
         <div class="card-foot">
-          <span class="card-price">S/ ${p.precio.toFixed(2)}</span>
+          <span class="card-price">S/ ${precio.toFixed(2)}</span>
           <button class="card-add" onclick="event.stopPropagation();addToCart(${p.id})">+ Agregar</button>
         </div>
       </div>
@@ -167,16 +176,21 @@ function goToPage(p) {
 }
 
 function openModal(id) {
-  const p = allProducts.find(x => x.id === id);
-  if (!p) return;
+  // Coerción segura: comparar como número
+  const p = allProducts.find(x => Number(x.id) === Number(id));
+  if (!p) {
+    console.warn('[Modal] Producto no encontrado, id:', id, 'disponibles:', allProducts.map(x=>x.id));
+    return;
+  }
   const img = typeof getImageUrl === 'function' ? (getImageUrl(p.imagen_url) || PLACEHOLDER_SVG) : (p.imagen_url || PLACEHOLDER_SVG);
+  const precio = parseFloat(p.precio) || 0;
   document.getElementById('modal-img').src = img;
   document.getElementById('modal-img').alt = p.nombre;
   document.getElementById('modal-cat').textContent = p.categoria;
   document.getElementById('modal-name').textContent = p.nombre;
   document.getElementById('modal-code').textContent = p.codigo ? 'Cód. ' + p.codigo : '';
   document.getElementById('modal-desc').textContent = p.descripcion || '';
-  document.getElementById('modal-price').textContent = 'S/ ' + p.precio.toFixed(2);
+  document.getElementById('modal-price').textContent = 'S/ ' + precio.toFixed(2);
   document.getElementById('modal-btn').onclick = () => { addToCart(p.id); closeModal(); };
   document.getElementById('modal-wa').href = 'https://wa.me/51920884528?text=Hola%20Hebillas%20Gin%26Jes%2C%20me%20interesa%3A%20' + encodeURIComponent(p.nombre) + '%20(' + (p.codigo||'') + ')';
   document.getElementById('product-modal').classList.add('open');
