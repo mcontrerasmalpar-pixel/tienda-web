@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tienda Web</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="bg-white text-gray-800 font-sans">
+
+  <!-- NAVBAR -->
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="/" class="text-2xl font-bold tracking-tight text-rose-600">MiTienda</a>
+      <nav class="hidden md:flex gap-6 text-sm font-medium">
+        <a href="#productos" class="hover:text-rose-500 transition">Productos</a>
+        <a href="#nosotros" class="hover:text-rose-500 transition">Nosotros</a>
+        <a href="#contacto" class="hover:text-rose-500 transition">Contacto</a>
+      </nav>
+      <button onclick="toggleCart()" class="relative">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.4 7h12.8M7 13H5.4M17 21a1 1 0 100-2 1 1 0 000 2zm-10 0a1 1 0 100-2 1 1 0 000 2z" />
+        </svg>
+        <span id="cart-count" class="absolute -top-2 -right-2 bg-rose-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="bg-rose-50 py-20 text-center">
+    <div class="max-w-2xl mx-auto px-4">
+      <h1 class="text-4xl md:text-5xl font-bold text-rose-600 mb-4">Calidad en cada detalle</h1>
+      <p class="text-gray-600 mb-8 text-lg">Descubre nuestra colección de productos artesanales y de alta calidad.</p>
+      <a href="#productos" class="bg-rose-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-rose-600 transition">Ver productos</a>
+    </div>
+  </section>
+
+  <!-- PRODUCTOS -->
+  <section id="productos" class="py-16 max-w-6xl mx-auto px-4">
+    <h2 class="text-2xl font-bold mb-8 text-center">Nuestros Productos</h2>
+    <div id="product-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <!-- Productos renderizados por JS -->
+    </div>
+  </section>
+
+  <!-- NOSOTROS -->
+  <section id="nosotros" class="bg-gray-50 py-16">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h2 class="text-2xl font-bold mb-4">¿Quiénes somos?</h2>
+      <p class="text-gray-600 text-lg max-w-2xl mx-auto">Somos una tienda comprometida con la calidad, la atención al cliente y la satisfacción en cada compra. Nuestros productos son cuidadosamente seleccionados para ofrecerte lo mejor.</p>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto" class="py-16 max-w-2xl mx-auto px-4">
+    <h2 class="text-2xl font-bold mb-6 text-center">Contacto</h2>
+    <form class="bg-white shadow rounded-xl p-8 flex flex-col gap-4">
+      <input type="text" placeholder="Tu nombre" class="border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-300" />
+      <input type="email" placeholder="Tu correo" class="border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-300" />
+      <textarea placeholder="Tu mensaje" rows="4" class="border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-300"></textarea>
+      <button type="submit" class="bg-rose-500 text-white py-2 rounded-lg font-semibold hover:bg-rose-600 transition">Enviar</button>
+    </form>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-gray-800 text-white text-center py-6 text-sm">
+    <p>&copy; 2026 MiTienda. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- CART SIDEBAR -->
+  <div id="cart-sidebar" class="fixed top-0 right-0 h-full w-80 bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 p-6 flex flex-col">
+    <div class="flex justify-between items-center mb-6">
+      <h3 class="font-bold text-lg">Carrito</h3>
+      <button onclick="toggleCart()" class="text-gray-500 hover:text-rose-500">✕</button>
+    </div>
+    <div id="cart-items" class="flex-1 overflow-y-auto text-sm text-gray-600">Tu carrito está vacío.</div>
+    <div class="border-t pt-4">
+      <p class="font-semibold text-right">Total: <span id="cart-total">S/ 0.00</span></p>
+      <button class="mt-3 w-full bg-rose-500 text-white py-2 rounded-lg font-semibold hover:bg-rose-600 transition">Pagar</button>
+    </div>
+  </div>
+  <div id="cart-overlay" onclick="toggleCart()" class="hidden fixed inset-0 bg-black bg-opacity-40 z-40"></div>
+
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
