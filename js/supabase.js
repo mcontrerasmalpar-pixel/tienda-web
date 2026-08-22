@@ -27,16 +27,18 @@ async function loadProductsFromSupabase() {
     const { data, error } = await withTimeout(query, 10000);
 
     if (error) {
-      console.error('[Supabase] Error al cargar productos:', error.message, error);
+      console.error('[Supabase] Error:', error.message);
       return null;
     }
 
     if (!data || data.length === 0) {
-      console.warn('[Supabase] Query exitosa pero devolvió 0 productos. Verifica RLS y activo=true.');
+      console.warn('[Supabase] 0 productos. Verifica RLS y activo=true.');
       return null;
     }
 
-    console.log('[Supabase] ' + data.length + ' productos cargados correctamente.');
+    console.log('[Supabase] ' + data.length + ' productos cargados.');
+    // Debug: mostrar primera imagen
+    if (data[0]) console.log('[IMG debug]', getImageUrl(data[0].imagen_url));
     return data;
   } catch (e) {
     console.error('[Supabase] Excepción:', e.message);
@@ -44,15 +46,12 @@ async function loadProductsFromSupabase() {
   }
 }
 
+// Construye la URL pública del Storage directamente (sin SDK)
+// para evitar problemas de encoding con espacios en nombres de archivo
 function getImageUrl(imagePath) {
   if (!imagePath) return '';
-  // Si ya es una URL completa, devolverla tal cual
   if (imagePath.startsWith('http')) return imagePath;
-  // Codificar cada segmento del path por separado para preservar las barras /
-  const encodedPath = imagePath
-    .split('/')
-    .map(segment => encodeURIComponent(segment))
-    .join('/');
-  const { data } = supabase.storage.from('productos').getPublicUrl(encodedPath);
-  return data.publicUrl;
+  // Codificar cada segmento separadamente preservando las barras
+  const encoded = imagePath.split('/').map(s => encodeURIComponent(s)).join('/');
+  return SUPABASE_URL + '/storage/v1/object/public/productos/' + encoded;
 }
