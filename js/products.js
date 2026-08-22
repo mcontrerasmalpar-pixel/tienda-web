@@ -2,52 +2,49 @@ const ITEMS_PER_PAGE = 12;
 let allProducts = [], filteredProducts = [], currentPage = 1;
 let currentView = 'grid', currentSort = 'default', currentSearch = '', currentCategory = null;
 
-// SVG placeholder inline — evita petición externa a via.placeholder.com
 const PLACEHOLDER_SVG = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Crect width='400' height='400' fill='%230d0d0d'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='28' fill='%23C9A84C'%3EGin%26amp%3BJes%3C/text%3E%3C/svg%3E`;
 
 const fallbackProducts = [
-  { id:1,  nombre:'Hebilla para Correa Dorada',    precio:5.50, imagen_url:'https://hebillasginjes.com/wp-content/uploads/HCORC-00024.jpg', categoria:'Hebillas',              descripcion:'Hebilla metálica dorada de zamak. Alta resistencia y acabado brillante.', codigo:'HCORC-00024', destacado:true  },
-  { id:2,  nombre:'Hebilla Rodillo Plateada',       precio:6.00, imagen_url:null, categoria:'Hebillas rodillo',    descripcion:'Hebilla tipo rodillo de zamak para correas y cinturones.',               codigo:'HROD-00001',  destacado:false },
-  { id:3,  nombre:'Placa Decorativa Premium',       precio:3.50, imagen_url:null, categoria:'Placas',             descripcion:'Placa decorativa de zamak para bolsos y calzado de alta gama.',          codigo:'PLAC-00001',  destacado:false },
-  { id:4,  nombre:'Jalador de Cierre',              precio:2.80, imagen_url:null, categoria:'Jaladores',          descripcion:'Jalador de cierre en zamak, compatible con cierres estándar.',           codigo:'JAL-00001',   destacado:false },
-  { id:5,  nombre:'Listón Decorativo Niquelado',    precio:4.20, imagen_url:null, categoria:'Listones',           descripcion:'Listón decorativo niquelado para calzado de cuero.',                     codigo:'LISTD-00014', destacado:true  },
-  { id:6,  nombre:'Pasante Simple 25mm',            precio:1.50, imagen_url:null, categoria:'Pasantes',           descripcion:'Pasante metálico para correas, ancho 25mm.',                             codigo:'PAS-00001',   destacado:false },
-  { id:7,  nombre:'Adorno con Remaches',            precio:7.00, imagen_url:null, categoria:'Adornos con remaches', descripcion:'Adorno decorativo con remaches para bolsos y marroquinería.',          codigo:'ADOCR-00015', destacado:true  },
-  { id:8,  nombre:'Ovalines Dorados',               precio:3.00, imagen_url:null, categoria:'Ovalines',           descripcion:'Ovalines metálicos para carteras y bolsos, acabado dorado.',             codigo:'OVA-00001',   destacado:false },
-  { id:9,  nombre:'Traba de Seguridad',             precio:4.50, imagen_url:null, categoria:'Trabas',             descripcion:'Traba de seguridad en zamak para correas y accesorios.',                 codigo:'TRAB-00001',  destacado:false },
-  { id:10, nombre:'Aplicación Floral',              precio:6.50, imagen_url:null, categoria:'Aplicaciones',       descripcion:'Aplicación decorativa floral para calzado y marroquinería.',             codigo:'APL-00001',   destacado:false },
-  { id:11, nombre:'Hebilla D-Ring 30mm',            precio:3.80, imagen_url:null, categoria:'Hebillas',           descripcion:'Hebilla D-Ring de 30mm para correas y mochilas.',                        codigo:'HCORC-00010', destacado:false },
-  { id:12, nombre:'Insumo Galvánico Gold',          precio:15.00,imagen_url:null, categoria:'Insumos Galvánicos y Otros', descripcion:'Insumo galvánico para acabado dorado en herrajes.',           codigo:'INSG-00001',  destacado:false }
+  { id:1,  nombre:'Hebilla para Correa Dorada',  precio:5.50,  imagen_url:'https://hebillasginjes.com/wp-content/uploads/HCORC-00024.jpg', categoria:'Aplicaciones', descripcion:'Hebilla metálica dorada de zamak.', codigo:'HCORC-00024', destacado:true  },
+  { id:2,  nombre:'Hebilla Rodillo Plateada',     precio:6.00,  imagen_url:null, categoria:'Aplicaciones', descripcion:'Hebilla tipo rodillo de zamak.',               codigo:'HROD-00001',  destacado:false },
+  { id:3,  nombre:'Placa Decorativa Premium',     precio:3.50,  imagen_url:null, categoria:'Aplicaciones', descripcion:'Placa decorativa de zamak para bolsos.',       codigo:'PLAC-00001',  destacado:false },
+  { id:4,  nombre:'Jalador de Cierre',            precio:2.80,  imagen_url:null, categoria:'Aplicaciones', descripcion:'Jalador de cierre en zamak.',                   codigo:'JAL-00001',   destacado:false },
+  { id:5,  nombre:'Pegapega Americano',           precio:0.00,  imagen_url:null, categoria:'Insumos Galvánicos y Otros', descripcion:'Pegamento americano de alta resistencia.', codigo:'PEG-AMERIC', destacado:true  },
+  { id:6,  nombre:'Pegapega Grado B',             precio:0.00,  imagen_url:null, categoria:'Insumos Galvánicos y Otros', descripcion:'Pegamento industrial Grado B.',         codigo:'PEG-GRADOB', destacado:false },
 ];
 
 async function initProducts() {
+  // Mostrar skeleton mientras carga
   document.getElementById('loading-state').style.display = 'block';
   document.getElementById('product-grid').classList.add('hidden');
 
-  // Mostrar fallback inmediatamente para no bloquear la UI
-  allProducts = [...fallbackProducts];
+  // Intentar Supabase PRIMERO (esperar hasta 5s)
+  let data = null;
+  try { data = await loadProductsFromSupabase(); } catch(e) { console.warn('Supabase error:', e); }
+
+  // Si Supabase responde con datos, usarlos; si no, usar fallback
+  allProducts = (data && data.length) ? data : [...fallbackProducts];
   filteredProducts = [...allProducts];
-  updateCounts();
+
   document.getElementById('loading-state').style.display = 'none';
   document.getElementById('product-grid').classList.remove('hidden');
-  renderPage();
 
-  // Luego intentar Supabase en segundo plano
-  const data = await loadProductsFromSupabase();
-  if (data && data.length) {
-    allProducts = data;
-    filteredProducts = [...allProducts];
-    updateCounts();
-    renderPage();
-  }
+  updateCounts();
+  applyFilters();
 }
 
 function updateCounts() {
-  const cats = ['all','Hebillas','Placas','Listones','Jaladores','Aplicaciones','Pasantes','Adornos con remaches','Ovalines','Hebillas rodillo','Trabas','Insumos Galvánicos y Otros'];
-  cats.forEach(cat => {
+  // Actualizar contador "Todos"
+  const elAll = document.getElementById('count-all');
+  if (elAll) elAll.textContent = '(' + allProducts.length + ')';
+
+  // Actualizar contadores de cada categoría que exista en el DOM
+  document.querySelectorAll('.cat-btn[data-cat]').forEach(btn => {
+    const cat = btn.dataset.cat;
+    if (cat === 'all') return;
     const el = document.getElementById('count-' + cat);
     if (!el) return;
-    const n = cat === 'all' ? allProducts.length : allProducts.filter(p => p.categoria === cat).length;
+    const n = allProducts.filter(p => p.categoria === cat).length;
     el.textContent = n > 0 ? '(' + n + ')' : '';
   });
 }
@@ -56,7 +53,9 @@ function filterProducts(cat) {
   currentCategory = cat; currentPage = 1; currentSearch = '';
   const si = document.getElementById('search-input');
   if (si) si.value = '';
-  document.querySelectorAll('.cat-btn').forEach(b => b.classList.toggle('active', b.dataset.cat === (cat || 'all')));
+  document.querySelectorAll('.cat-btn').forEach(b =>
+    b.classList.toggle('active', b.dataset.cat === (cat || 'all'))
+  );
   applyFilters();
   document.getElementById('tienda').scrollIntoView({ behavior: 'smooth' });
 }
@@ -68,7 +67,7 @@ function filterByPrice()   { currentPage = 1; applyFilters(); }
 function applyFilters() {
   let list = [...allProducts];
   if (currentCategory) list = list.filter(p => p.categoria === currentCategory);
-  if (currentSearch) list = list.filter(p =>
+  if (currentSearch)   list = list.filter(p =>
     (p.nombre||'').toLowerCase().includes(currentSearch) ||
     (p.codigo||'').toLowerCase().includes(currentSearch) ||
     (p.descripcion||'').toLowerCase().includes(currentSearch)
@@ -80,15 +79,17 @@ function applyFilters() {
   if (currentSort === 'price-desc') list.sort((a,b) => b.precio - a.precio);
   if (currentSort === 'name-asc')   list.sort((a,b) => a.nombre.localeCompare(b.nombre));
   filteredProducts = list;
+  currentPage = 1;
   renderPage();
 }
 
 function renderPage() {
-  const s = (currentPage-1)*ITEMS_PER_PAGE;
-  const items = filteredProducts.slice(s, s+ITEMS_PER_PAGE);
+  const s = (currentPage - 1) * ITEMS_PER_PAGE;
+  const items = filteredProducts.slice(s, s + ITEMS_PER_PAGE);
   const total = filteredProducts.length;
-  document.getElementById('results-count').textContent =
-    'Mostrando ' + Math.min(s+1,total) + '–' + Math.min(s+ITEMS_PER_PAGE,total) + ' de ' + total + ' producto' + (total!==1?'s':'');
+  const showing = document.getElementById('results-count');
+  if (showing) showing.textContent =
+    'Mostrando ' + Math.min(s+1,total) + '\u2013' + Math.min(s+ITEMS_PER_PAGE,total) + ' de ' + total + ' producto' + (total!==1?'s':'');
   renderCards(items);
   renderPagination(total);
 }
@@ -149,8 +150,9 @@ function renderCards(list) {
 }
 
 function renderPagination(total) {
-  const pages = Math.ceil(total/ITEMS_PER_PAGE);
+  const pages = Math.ceil(total / ITEMS_PER_PAGE);
   const pag = document.getElementById('pagination');
+  if (!pag) return;
   if (pages <= 1) { pag.classList.add('hidden'); return; }
   pag.classList.remove('hidden');
   pag.innerHTML = Array.from({length:pages},(_,i)=>i+1).map(p =>
