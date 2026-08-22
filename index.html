@@ -6,7 +6,6 @@
   <title>Hebillas Gin&amp;Jes — Herrajes de Calidad, Lima</title>
   <meta name="description" content="Más de 30 años fabricando hebillas y herrajes de calidad para calzado, textil y confección en Perú." />
 
-  <!-- Fuentes: Plus Jakarta Sans (body) + Fraunces (display) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fraunces:ital,wght@1,300;1,400&display=swap" rel="stylesheet">
@@ -50,7 +49,6 @@
   </nav>
 </header>
 
-<!-- ── HERO ── -->
 <main>
 <section id="inicio" class="hero" aria-label="Sección principal">
   <div class="hero-bg" aria-hidden="true"></div>
@@ -75,7 +73,6 @@
   </div>
 </section>
 
-<!-- ── TICKER ── -->
 <div class="ticker" aria-hidden="true">
   <div class="ticker-track">
     <span>Herrajes de Zamak</span><span class="dot">◆</span>
@@ -90,7 +87,6 @@
     <span>Pegapega Grado B</span><span class="dot">◆</span>
     <span>Tiptop Sapito</span><span class="dot">◆</span>
     <span>Delivery Lima y provincias</span><span class="dot">◆</span>
-    <!-- dup -->
     <span>Herrajes de Zamak</span><span class="dot">◆</span>
     <span>Argollas</span><span class="dot">◆</span>
     <span>Broches</span><span class="dot">◆</span>
@@ -100,27 +96,14 @@
   </div>
 </div>
 
-<!-- ── STATS ── -->
 <section class="stats" aria-label="Números de la empresa">
-  <div class="stat">
-    <strong>+30</strong>
-    <span>Años de experiencia</span>
-  </div>
+  <div class="stat"><strong>+30</strong><span>Años de experiencia</span></div>
   <div class="stat-div" aria-hidden="true"></div>
-  <div class="stat">
-    <strong>+500</strong>
-    <span>Clientes fieles</span>
-  </div>
+  <div class="stat"><strong>+500</strong><span>Clientes fieles</span></div>
   <div class="stat-div" aria-hidden="true"></div>
-  <div class="stat">
-    <strong>+400</strong>
-    <span>Referencias</span>
-  </div>
+  <div class="stat"><strong>+400</strong><span>Referencias</span></div>
   <div class="stat-div" aria-hidden="true"></div>
-  <div class="stat">
-    <strong>2</strong>
-    <span>Locales en Lima</span>
-  </div>
+  <div class="stat"><strong>2</strong><span>Locales en Lima</span></div>
 </section>
 
 <!-- ── TIENDA ── -->
@@ -149,14 +132,13 @@
   </div>
 
   <div class="shop-body">
-    <!-- SIDEBAR -->
     <aside class="sidebar" aria-label="Filtros">
       <div class="sidebar-block">
         <p class="sidebar-ttl">Categorías</p>
         <ul id="sidebar-cats" role="list">
           <li><button class="cat-btn active" data-cat="all" onclick="filterProducts(null)">Todos <span id="count-all"></span></button></li>
           <li><button class="cat-btn" data-cat="Aplicaciones" onclick="filterProducts('Aplicaciones')">Aplicaciones metálicas <span id="count-Aplicaciones"></span></button></li>
-          <li><button class="cat-btn" data-cat="Insumos Galvánicos y Otros" onclick="filterProducts('Insumos Galvánicos y Otros')">Insumos y otros <span id="count-Insumos Galvánicos y Otros"></span></button></li>
+          <li><button class="cat-btn" data-cat="Insumos Galvánicos y Otros" onclick="filterProducts('Insumos Galvánicos y Otros')">Insumos y otros <span id="count-insumos"></span></button></li>
         </ul>
       </div>
       <div class="sidebar-block">
@@ -181,7 +163,6 @@
       </div>
     </aside>
 
-    <!-- GRID -->
     <div class="shop-main">
       <div class="results-bar">
         <p id="results-count" aria-live="polite"></p>
@@ -341,7 +322,8 @@
   </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- Supabase JS v2 (versión fija para compatibilidad con sb_publishable_) -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <script src="js/supabase.js"></script>
 <script src="js/products.js"></script>
 <script src="js/cart.js"></script>
