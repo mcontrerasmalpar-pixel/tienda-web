@@ -1,28 +1,24 @@
-// Gin&Jes App
-console.log('Gin&Jes • Tienda iniciada ✨');
+function toggleCart() {
+  document.getElementById('cart-sidebar').classList.toggle('open');
+  document.getElementById('cart-overlay').classList.toggle('open');
+}
 
-// Navbar scroll effect
-window.addEventListener('scroll', () => {
-  const navbar = document.getElementById('navbar');
-  if (window.scrollY > 50) {
-    navbar.style.background = 'rgba(0,0,0,0.98)';
-    navbar.style.backdropFilter = 'blur(10px)';
-  } else {
-    navbar.style.background = '#000';
-  }
-});
+function toggleMenu() {
+  document.getElementById('mobile-menu').classList.toggle('open');
+}
 
-// Contact form
 function handleContact(e) {
   e.preventDefault();
-  alert('\u2728 Mensaje enviado. Te contactaremos pronto.');
+  alert('Gracias por tu mensaje. Nos pondremos en contacto contigo pronto.');
   e.target.reset();
 }
 
-// Keyboard close modal
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-    closeModal();
-    closeCart();
+// Navbar scroll effect
+window.addEventListener('scroll', () => {
+  const nb = document.getElementById('navbar');
+  if (window.scrollY > 60) {
+    nb.style.borderBottomColor = 'rgba(201,168,76,.35)';
+  } else {
+    nb.style.borderBottomColor = 'rgba(201,168,76,.18)';
   }
 });
