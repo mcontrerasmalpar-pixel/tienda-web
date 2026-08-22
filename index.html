@@ -29,11 +29,11 @@
     </nav>
     <div class="nav-right">
       <div class="search-wrap" role="search">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
         <input id="search-input" type="search" placeholder="Buscar producto..." aria-label="Buscar" oninput="searchProducts(this.value)" />
       </div>
       <button class="cart-btn" onclick="toggleCart()" aria-label="Abrir carrito">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
         <span id="cart-count" aria-live="polite">0</span>
       </button>
       <button class="menu-btn" onclick="toggleMenu()" aria-label="Abrir menú" aria-expanded="false">
@@ -63,36 +63,63 @@
       para la industria de calzado, textil, cuero y confección.
     </p>
     <div class="hero-ctas">
-      <a href="#tienda" class="btn btn-gold">Explorar tienda</a>
-      <a href="#nosotros" class="btn btn-outline">Nuestra historia</a>
+      <a href="#tienda" class="btn btn-gold">
+        <!-- icon: shopping-bag -->
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        Explorar tienda
+      </a>
+      <a href="#nosotros" class="btn btn-outline">
+        <!-- icon: users -->
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        Nuestra historia
+      </a>
     </div>
   </div>
+  <!-- scroll indicator: chevron animado en lugar de texto -->
   <div class="hero-scroll" aria-hidden="true">
-    <span>Scroll</span>
-    <div class="scroll-bar"></div>
+    <svg class="scroll-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
   </div>
 </section>
 
 <div class="ticker" aria-hidden="true">
   <div class="ticker-track">
-    <span>Herrajes de Zamak</span><span class="dot">◆</span>
-    <span>Argollas</span><span class="dot">◆</span>
-    <span>Broches</span><span class="dot">◆</span>
-    <span>Mosquetones</span><span class="dot">◆</span>
-    <span>Reguladores</span><span class="dot">◆</span>
-    <span>Media Luna</span><span class="dot">◆</span>
-    <span>Base de Llavero</span><span class="dot">◆</span>
-    <span>Ganchos</span><span class="dot">◆</span>
-    <span>Pegapega Americano</span><span class="dot">◆</span>
-    <span>Pegapega Grado B</span><span class="dot">◆</span>
-    <span>Tiptop Sapito</span><span class="dot">◆</span>
-    <span>Delivery Lima y provincias</span><span class="dot">◆</span>
-    <span>Herrajes de Zamak</span><span class="dot">◆</span>
-    <span>Argollas</span><span class="dot">◆</span>
-    <span>Broches</span><span class="dot">◆</span>
-    <span>Mosquetones</span><span class="dot">◆</span>
-    <span>Reguladores</span><span class="dot">◆</span>
-    <span>Media Luna</span><span class="dot">◆</span>
+    <span>Herrajes de Zamak</span>
+    <svg class="tick-dot" width="6" height="6" viewBox="0 0 6 6" fill="currentColor"><circle cx="3" cy="3" r="3"/></svg>
+    <span>Argollas</span>
+    <svg class="tick-dot" width="6" height="6" viewBox="0 0 6 6" fill="currentColor"><circle cx="3" cy="3" r="3"/></svg>
+    <span>Broches</span>
+    <svg class="tick-dot" width="6" height="6" viewBox="0 0 6 6" fill="currentColor"><circle cx="3" cy="3" r="3"/></svg>
+    <span>Mosquetones</span>
+    <svg class="tick-dot" width="6" height="6" viewBox="0 0 6 6" fill="currentColor"><circle cx="3" cy="3" r="3"/></svg>
+    <span>Reguladores</span>
+    <svg class="tick-dot" width="6" height="6" viewBox="0 0 6 6" fill="currentColor"><circle cx="3" cy="3" r="3"/></svg>
+    <span>Media Luna</span>
+    <svg class="tick-dot" width="6" height="6" viewBox="0 0 6 6" fill="currentColor"><circle cx="3" cy="3" r="3"/></svg>
+    <span>Base de Llavero</span>
+    <svg class="tick-dot" width="6" height="6" viewBox="0 0 6 6" fill="currentColor"><circle cx="3" cy="3" r="3"/></svg>
+    <span>Ganchos</span>
+    <svg class="tick-dot" width="6" height="6" viewBox="0 0 6 6" fill="currentColor"><circle cx="3" cy="3" r="3"/></svg>
+    <span>Pegapega Americano</span>
+    <svg class="tick-dot" width="6" height="6" viewBox="0 0 6 6" fill="currentColor"><circle cx="3" cy="3" r="3"/></svg>
+    <span>Pegapega Grado B</span>
+    <svg class="tick-dot" width="6" height="6" viewBox="0 0 6 6" fill="currentColor"><circle cx="3" cy="3" r="3"/></svg>
+    <span>Tiptop Sapito</span>
+    <svg class="tick-dot" width="6" height="6" viewBox="0 0 6 6" fill="currentColor"><circle cx="3" cy="3" r="3"/></svg>
+    <span>Delivery Lima y provincias</span>
+    <svg class="tick-dot" width="6" height="6" viewBox="0 0 6 6" fill="currentColor"><circle cx="3" cy="3" r="3"/></svg>
+    <!-- duplicado para loop continuo -->
+    <span>Herrajes de Zamak</span>
+    <svg class="tick-dot" width="6" height="6" viewBox="0 0 6 6" fill="currentColor"><circle cx="3" cy="3" r="3"/></svg>
+    <span>Argollas</span>
+    <svg class="tick-dot" width="6" height="6" viewBox="0 0 6 6" fill="currentColor"><circle cx="3" cy="3" r="3"/></svg>
+    <span>Broches</span>
+    <svg class="tick-dot" width="6" height="6" viewBox="0 0 6 6" fill="currentColor"><circle cx="3" cy="3" r="3"/></svg>
+    <span>Mosquetones</span>
+    <svg class="tick-dot" width="6" height="6" viewBox="0 0 6 6" fill="currentColor"><circle cx="3" cy="3" r="3"/></svg>
+    <span>Reguladores</span>
+    <svg class="tick-dot" width="6" height="6" viewBox="0 0 6 6" fill="currentColor"><circle cx="3" cy="3" r="3"/></svg>
+    <span>Media Luna</span>
+    <svg class="tick-dot" width="6" height="6" viewBox="0 0 6 6" fill="currentColor"><circle cx="3" cy="3" r="3"/></svg>
   </div>
 </div>
 
@@ -115,7 +142,7 @@
     </div>
     <div class="shop-controls">
       <div class="search-wrap mobile-search">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
         <input type="search" placeholder="Buscar..." aria-label="Buscar" oninput="searchProducts(this.value)" />
       </div>
       <select class="sort-select" onchange="sortProducts(this.value)" aria-label="Ordenar productos">
@@ -124,9 +151,14 @@
         <option value="price-desc">Precio ↓</option>
         <option value="name-asc">A → Z</option>
       </select>
+      <!-- view toggle: SVG Lucide en lugar de ⊞ ☰ -->
       <div class="view-btns" role="group" aria-label="Vista">
-        <button class="view-btn active" id="btn-grid" onclick="setView('grid')" aria-label="Vista cuadrícula" aria-pressed="true">⊞</button>
-        <button class="view-btn" id="btn-list" onclick="setView('list')" aria-label="Vista lista" aria-pressed="false">☰</button>
+        <button class="view-btn active" id="btn-grid" onclick="setView('grid')" aria-label="Vista cuadrícula" aria-pressed="true">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        </button>
+        <button class="view-btn" id="btn-list" onclick="setView('list')" aria-label="Vista lista" aria-pressed="false">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+        </button>
       </div>
     </div>
   </div>
@@ -135,10 +167,9 @@
     <aside class="sidebar" aria-label="Filtros">
       <div class="sidebar-block">
         <p class="sidebar-ttl">Categorías</p>
+        <!-- generado dinámicamente por products.js → buildCategoryButtons() -->
         <ul id="sidebar-cats" role="list">
           <li><button class="cat-btn active" data-cat="all" onclick="filterProducts(null)">Todos <span id="count-all"></span></button></li>
-          <li><button class="cat-btn" data-cat="Aplicaciones" onclick="filterProducts('Aplicaciones')">Aplicaciones metálicas <span id="count-Aplicaciones"></span></button></li>
-          <li><button class="cat-btn" data-cat="Insumos Galvánicos y Otros" onclick="filterProducts('Insumos Galvánicos y Otros')">Insumos y otros <span id="count-insumos"></span></button></li>
         </ul>
       </div>
       <div class="sidebar-block">
@@ -148,7 +179,10 @@
           <span aria-hidden="true">—</span>
           <input type="number" id="price-max" placeholder="Máx" min="0" aria-label="Precio máximo" />
         </div>
-        <button class="filter-btn" onclick="filterByPrice()">Aplicar filtro</button>
+        <button class="filter-btn" onclick="filterByPrice()">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+          Aplicar filtro
+        </button>
       </div>
       <div class="sidebar-block sid-contact">
         <p class="sidebar-ttl">Asesoría directa</p>
@@ -167,10 +201,17 @@
       <div class="results-bar">
         <p id="results-count" aria-live="polite"></p>
       </div>
-      <div id="loading-state" class="loading" aria-label="Cargando...">
-        <div class="spinner" aria-hidden="true"></div>
-        <p>Cargando colección…</p>
+
+      <!-- Skeleton loader (visible mientras carga) -->
+      <div id="loading-state" class="skeleton-grid" aria-label="Cargando productos..." aria-busy="true">
+        <div class="skeleton-card"><div class="sk-img"></div><div class="sk-line w70"></div><div class="sk-line w45"></div><div class="sk-line w60"></div></div>
+        <div class="skeleton-card"><div class="sk-img"></div><div class="sk-line w70"></div><div class="sk-line w45"></div><div class="sk-line w60"></div></div>
+        <div class="skeleton-card"><div class="sk-img"></div><div class="sk-line w70"></div><div class="sk-line w45"></div><div class="sk-line w60"></div></div>
+        <div class="skeleton-card"><div class="sk-img"></div><div class="sk-line w70"></div><div class="sk-line w45"></div><div class="sk-line w60"></div></div>
+        <div class="skeleton-card"><div class="sk-img"></div><div class="sk-line w70"></div><div class="sk-line w45"></div><div class="sk-line w60"></div></div>
+        <div class="skeleton-card"><div class="sk-img"></div><div class="sk-line w70"></div><div class="sk-line w45"></div><div class="sk-line w60"></div></div>
       </div>
+
       <div id="product-grid" class="pgrid hidden" role="list"></div>
       <div id="pagination" class="pagination hidden" role="navigation" aria-label="Paginación"></div>
     </div>
@@ -256,7 +297,10 @@
       <input type="email" placeholder="Correo electrónico" autocomplete="email" required />
       <input type="tel" placeholder="WhatsApp / Teléfono" autocomplete="tel" />
       <textarea rows="4" placeholder="¿Qué producto necesitas?"></textarea>
-      <button type="submit">Enviar consulta</button>
+      <button type="submit">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        Enviar consulta
+      </button>
     </form>
   </div>
 </section>
@@ -288,14 +332,20 @@
 <aside id="cart-sidebar" aria-label="Carrito de compras" role="complementary">
   <div class="cart-hd">
     <h3>Tu carrito</h3>
-    <button onclick="toggleCart()" aria-label="Cerrar carrito">✕</button>
+    <!-- ✕ reemplazado por SVG Lucide X -->
+    <button onclick="toggleCart()" aria-label="Cerrar carrito" class="icon-btn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
   </div>
   <div id="cart-items">
     <p class="cart-empty">Tu carrito está vacío.</p>
   </div>
   <div class="cart-ft">
     <p>Total <span id="cart-total">S/ 0.00</span></p>
-    <a href="https://wa.me/51926894528?text=Hola%2C%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener noreferrer">Pedir por WhatsApp</a>
+    <a href="https://wa.me/51926894528?text=Hola%2C%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener noreferrer">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Pedir por WhatsApp
+    </a>
   </div>
 </aside>
 <div id="cart-overlay" onclick="toggleCart()" aria-hidden="true"></div>
@@ -304,7 +354,10 @@
 <div id="product-modal" role="dialog" aria-modal="true" aria-labelledby="modal-name">
   <div class="modal-bg" onclick="closeModal()"></div>
   <div class="modal-box">
-    <button class="modal-close" onclick="closeModal()" aria-label="Cerrar">✕</button>
+    <!-- ✕ reemplazado por SVG Lucide X -->
+    <button class="modal-close" onclick="closeModal()" aria-label="Cerrar">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
     <div class="modal-grid">
       <div class="modal-img-w">
         <img id="modal-img" src="" alt="" loading="lazy" />
@@ -316,7 +369,10 @@
         <p id="modal-desc"></p>
         <p id="modal-price"></p>
         <button id="modal-btn">+ Agregar al carrito</button>
-        <a id="modal-wa" href="" target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a>
+        <a id="modal-wa" href="" target="_blank" rel="noopener noreferrer">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Consultar por WhatsApp
+        </a>
       </div>
     </div>
   </div>
