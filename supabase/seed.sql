@@ -1,36 +1,42 @@
 -- =============================================
 -- SEED — Hebillas Gin&Jes
--- Productos reales basados en Storage bucket
+-- Rutas exactas según Supabase Storage bucket: productos
 -- Ejecutar en: Supabase → SQL Editor
 -- =============================================
 
--- Limpiar productos de prueba anteriores
+-- Limpiar productos anteriores
 TRUNCATE public.productos RESTART IDENTITY;
 
--- =============================================
--- INSERTAR PRODUCTOS REALES
--- =============================================
 INSERT INTO public.productos
   (nombre, precio, imagen_url, categoria, descripcion, codigo, destacado, activo)
 VALUES
 
-  -- ── LOGO (referencia interna, no producto) ──────────────────────────────
-  -- logo/ → solo para uso interno del sitio
-
-  -- ── PEGAPEGA ────────────────────────────────────────────────────────────
-  ('Pegapega Grado B',
-   0.00, 'pegapega/pegapega-grado-b.jpg',
-   'Insumos Galvánicos y Otros',
-   'Pegamento industrial Grado B para herrajes, plantillas y calzado.',
-   'PEG-GRADOB', false, true),
-
+  -- ────────────────────────────────────────────────
+  -- PEGAPEGA  (carpeta: pegapega/)
+  -- Subcarpetas: americano | gradob
+  -- ────────────────────────────────────────────────
+  -- NOTA: reemplaza "imagen.jpg" por el nombre real del archivo
+  -- dentro de cada subcarpeta (ej: americano.jpg, gradob.png, etc.)
   ('Pegapega Americano',
-   0.00, 'pegapega/pegapega-americano.jpg',
+   0.00, 'pegapega/americano/americano.jpg',
    'Insumos Galvánicos y Otros',
    'Pegamento americano de alta resistencia para cuero y textil.',
    'PEG-AMERIC', true, true),
 
-  -- ── PRODUCTOS METALES ───────────────────────────────────────────────────
+  ('Pegapega Grado B',
+   0.00, 'pegapega/gradob/gradob.jpg',
+   'Insumos Galvánicos y Otros',
+   'Pegamento industrial Grado B para herrajes, plantillas y calzado.',
+   'PEG-GRADOB', false, true),
+
+  -- ────────────────────────────────────────────────
+  -- PRODUCTOS METALES  (carpeta: productos metales/)
+  -- Archivos: argollas | aro mosqueton | base de llavero |
+  --           broche iman | broche7050 | ganchos |
+  --           media luna | mosquetones | reguladores
+  -- ────────────────────────────────────────────────
+  -- NOTA: usa la extensión real (.jpg, .png, .webp)
+  -- del archivo subido. Ej: 'productos metales/argollas.jpg'
   ('Argollas',
    0.00, 'productos metales/argollas.jpg',
    'Aplicaciones',
@@ -38,25 +44,25 @@ VALUES
    'MET-ARGOLL', false, true),
 
   ('Aro Mosquetón',
-   0.00, 'productos metales/aro-mosqueton.jpg',
+   0.00, 'productos metales/aro mosqueton.jpg',
    'Aplicaciones',
    'Aro tipo mosquetón metálico para llaveros y accesorios.',
    'MET-AROMOSQ', false, true),
 
   ('Base de Llavero',
-   0.00, 'productos metales/base-de-llavero.jpg',
+   0.00, 'productos metales/base de llavero.jpg',
    'Aplicaciones',
    'Base metálica para llavero, acabado niquelado o dorado.',
    'MET-BASLLAV', false, true),
 
   ('Broche Imán',
-   0.00, 'productos metales/broche-iman.jpg',
+   0.00, 'productos metales/broche iman.jpg',
    'Aplicaciones',
    'Broche de imán para bolsos y carteras, zamak con acabado premium.',
    'MET-BRIMAN', true, true),
 
   ('Broche 7050',
-   0.00, 'productos metales/broche-7050.jpg',
+   0.00, 'productos metales/broche7050.jpg',
    'Aplicaciones',
    'Broche modelo 7050 de zamak para carteras y marroquinería.',
    'MET-BR7050', false, true),
@@ -68,7 +74,7 @@ VALUES
    'MET-GANCHO', false, true),
 
   ('Media Luna',
-   0.00, 'productos metales/media-luna.jpg',
+   0.00, 'productos metales/media luna.jpg',
    'Aplicaciones',
    'Herraje media luna de zamak para bolsos y marroquinería.',
    'MET-MEDLUN', false, true),
@@ -85,7 +91,10 @@ VALUES
    'Reguladores metálicos para correas y tirantes de bolsos.',
    'MET-REGULA', false, true),
 
-  -- ── PRODUCTOS PLÁSTICOS ─────────────────────────────────────────────────
+  -- ────────────────────────────────────────────────
+  -- PRODUCTOS PLÁSTICOS  (carpeta: productos plasticos/)
+  -- Archivos: mosquetones | reguladores | tiptop
+  -- ────────────────────────────────────────────────
   ('Mosquetones (Plástico)',
    0.00, 'productos plasticos/mosquetones.jpg',
    'Insumos Galvánicos y Otros',
@@ -99,18 +108,35 @@ VALUES
    'PLAS-REGULA', false, true),
 
   ('Tiptop Sapito',
-   0.00, 'productos plasticos/tiptop-sapito.jpg',
+   0.00, 'productos plasticos/tiptop.jpg',
    'Insumos Galvánicos y Otros',
    'Tiptop modelo sapito en plástico para calzado infantil y casual.',
    'PLAS-TIPSAP', true, true);
 
--- =============================================
--- ACTUALIZAR PRECIOS (completar con precios reales)
--- Ejemplo:
--- UPDATE public.productos SET precio = 3.50 WHERE codigo = 'MET-BRIMAN';
--- =============================================
 
--- VERIFICAR RESULTADO
-SELECT id, codigo, nombre, categoria, imagen_url, destacado
+-- =============================================
+-- PASO 2: ACTUALIZAR PRECIOS
+-- Descomenta y completa con los precios reales
+-- =============================================
+-- UPDATE public.productos SET precio = 0.00 WHERE codigo = 'PEG-AMERIC';
+-- UPDATE public.productos SET precio = 0.00 WHERE codigo = 'PEG-GRADOB';
+-- UPDATE public.productos SET precio = 0.00 WHERE codigo = 'MET-ARGOLL';
+-- UPDATE public.productos SET precio = 0.00 WHERE codigo = 'MET-AROMOSQ';
+-- UPDATE public.productos SET precio = 0.00 WHERE codigo = 'MET-BASLLAV';
+-- UPDATE public.productos SET precio = 0.00 WHERE codigo = 'MET-BRIMAN';
+-- UPDATE public.productos SET precio = 0.00 WHERE codigo = 'MET-BR7050';
+-- UPDATE public.productos SET precio = 0.00 WHERE codigo = 'MET-GANCHO';
+-- UPDATE public.productos SET precio = 0.00 WHERE codigo = 'MET-MEDLUN';
+-- UPDATE public.productos SET precio = 0.00 WHERE codigo = 'MET-MOSQUT';
+-- UPDATE public.productos SET precio = 0.00 WHERE codigo = 'MET-REGULA';
+-- UPDATE public.productos SET precio = 0.00 WHERE codigo = 'PLAS-MOSQUT';
+-- UPDATE public.productos SET precio = 0.00 WHERE codigo = 'PLAS-REGULA';
+-- UPDATE public.productos SET precio = 0.00 WHERE codigo = 'PLAS-TIPSAP';
+
+
+-- =============================================
+-- VERIFICAR
+-- =============================================
+SELECT id, codigo, nombre, categoria, imagen_url, precio, destacado
 FROM public.productos
 ORDER BY categoria, nombre;
