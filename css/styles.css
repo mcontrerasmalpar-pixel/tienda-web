@@ -1129,3 +1129,51 @@ footer {
     transition-duration: .01ms !important;
   }
 }
+/* Video de fondo del hero */
+.hero {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero-video {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+}
+
+.hero-bg {
+  z-index: -1;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(8, 8, 8, 0.62) 0%,
+      rgba(8, 8, 8, 0.46) 45%,
+      rgba(8, 8, 8, 0.84) 100%
+    );
+}
+
+.hero-inner,
+.hero-scroll {
+  position: relative;
+  z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-video {
+    display: none;
+  }
+}
