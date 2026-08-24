@@ -4,7 +4,6 @@ let currentView = 'grid', currentSort = 'default', currentSearch = '', currentCa
 
 const PLACEHOLDER = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22 viewBox=%220 0 400 400%22%3E%3Crect width=%22400%22 height=%22400%22 fill=%22%230d0d0d%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2228%22 fill=%22%23C9A84C%22%3EGin%26Jes%3C/text%3E%3C/svg%3E';
 
-// Fallback con rutas reales del bucket
 const fallbackProducts = [
   { id:1,  nombre:'Pegapega Americano',    precio:0, imagen_url:'pegapega/americano/americano.jpg',                              categoria:'Pegapega',          descripcion:'Pegamento americano de alta resistencia.', codigo:'PEG-AMERIC',     destacado:true  },
   { id:2,  nombre:'Pegapega Grado B',      precio:0, imagen_url:'pegapega/gradob/gradob.jpg',                                   categoria:'Pegapega',          descripcion:'Pegamento industrial Grado B.',            codigo:'PEG-GRADOB',     destacado:false },
@@ -25,17 +24,6 @@ const fallbackProducts = [
   { id:17, nombre:'Tiptop Sapito',         precio:0, imagen_url:'productos plasticos/tiptop/sapito/tiptopsapito.jpg',           categoria:'Tiptop',            descripcion:'Tiptop sapito en plástico para calzado.', codigo:'PLAS-TIPSAP',    destacado:true  },
 ];
 
-// Categorías reales del bucket
-const CATEGORIAS = [
-  'Pegapega',
-  'Broches',
-  'Ganchos',
-  'Herrajes Metálicos',
-  'Mosquetones',
-  'Reguladores',
-  'Tiptop',
-];
-
 function formatPrecio(precio) {
   const n = parseFloat(precio);
   if (!n || n <= 0) return '<span style="font-size:var(--f-sm);color:var(--text-3);font-weight:500">Consultar precio</span>';
@@ -45,13 +33,12 @@ function formatPrecioModal(precio) {
   const n = parseFloat(precio);
   return (!n || n <= 0) ? 'Consultar precio' : 'S/ ' + n.toFixed(2);
 }
-
 function handleImgError(e) {
   if (e.target.src !== PLACEHOLDER) e.target.src = PLACEHOLDER;
 }
 
 async function initProducts() {
-  document.getElementById('loading-state').style.display = 'block';
+  document.getElementById('loading-state').style.display = '';
   document.getElementById('product-grid').classList.add('hidden');
 
   let data = null;
@@ -70,15 +57,16 @@ async function initProducts() {
   applyFilters();
 }
 
+// ── Categorías en la sidebar (id corregido) ──
 function buildCategoryButtons() {
-  const container = document.getElementById('cat-buttons');
+  const container = document.getElementById('sidebar-cats');
   if (!container) return;
   const cats = [...new Set(allProducts.map(p => p.categoria))].sort();
-  const allBtn = `<button class="cat-btn active" data-cat="all" onclick="filterProducts(null)">Todos <span id="count-all"></span></button>`;
-  const catBtns = cats.map(c =>
-    `<button class="cat-btn" data-cat="${escAttr(c)}" onclick="filterProducts('${escAttr(c)}')">${escAttr(c)} <span></span></button>`
+  const allLi = `<li><button class="cat-btn active" data-cat="all" onclick="filterProducts(null)">Todos <span id="count-all"></span></button></li>`;
+  const catLis = cats.map(c =>
+    `<li><button class="cat-btn" data-cat="${escAttr(c)}" onclick="filterProducts('${escAttr(c)}')">${escAttr(c)} <span></span></button></li>`
   ).join('');
-  container.innerHTML = allBtn + catBtns;
+  container.innerHTML = allLi + catLis;
 }
 
 function updateCounts() {
@@ -145,6 +133,8 @@ function setView(v) {
   grid.classList.toggle('list-view', v==='list');
   document.getElementById('btn-grid').classList.toggle('active', v==='grid');
   document.getElementById('btn-list').classList.toggle('active', v==='list');
+  document.getElementById('btn-grid').setAttribute('aria-pressed', v==='grid');
+  document.getElementById('btn-list').setAttribute('aria-pressed', v==='list');
   renderPage();
 }
 

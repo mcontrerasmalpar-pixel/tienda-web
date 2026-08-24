@@ -1,24 +1,18 @@
+// ── Toggle carrito ──────────────────────────
 function toggleCart() {
   document.getElementById('cart-sidebar').classList.toggle('open');
   document.getElementById('cart-overlay').classList.toggle('open');
 }
 
+// ── Toggle menú móvil ───────────────────────
 function toggleMenu() {
-  document.getElementById('mobile-menu').classList.toggle('open');
+  const menu = document.getElementById('mobile-menu');
+  const btn  = document.querySelector('.menu-btn');
+  const open = menu.classList.toggle('open');
+  if (btn) btn.setAttribute('aria-expanded', open);
 }
 
-function handleContact(e) {
-  e.preventDefault();
-  alert('Gracias por tu mensaje. Nos pondremos en contacto contigo pronto.');
-  e.target.reset();
-}
-
-// Navbar scroll effect
+// ── Navbar: borde dorado al hacer scroll ────
 window.addEventListener('scroll', () => {
-  const nb = document.getElementById('navbar');
-  if (window.scrollY > 60) {
-    nb.style.borderBottomColor = 'rgba(201,168,76,.35)';
-  } else {
-    nb.style.borderBottomColor = 'rgba(201,168,76,.18)';
-  }
-});
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
