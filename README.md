@@ -1,62 +1,37 @@
-# 🧵 Gin&Jes — Tienda de Costura y Confección
+# Distribuidora Gin&Jes — tienda y administración del catálogo
 
-Sitio web oficial de **Gin&Jes**, tienda de accesorios para costura y confección de alta calidad con 2 locales en Lima, Perú.
+Web estática en HTML, CSS y JavaScript, conectada a Supabase. Conserva el diseño negro y dorado y el bucket `product-images`.
 
-## 📍 Locales
-- **CC. Virrey Amot** — Puesto 223 | +51 920 884 528
-- **CC. Perú Futuro** — Puesto 309-310 | +51 909 001 592
+## Catálogo
 
-## ✨ Características
-- Catálogo dinámico cargado desde **Supabase**
-- Filtros por categoría (Hilos, Agujas, Telas, Kits, Botones, Cierres, Encajes)
-- Modal de producto con descripción completa
-- Carrito de compras con sidebar
-- Diseño luxury: **fondo negro + detalles dorados**
-- Sección "Encuéntranos" con links a WhatsApp por local
-- Mobile-first con Tailwind CSS
+- Categorías y subcategorías normalizadas, códigos únicos y estado activo.
+- Búsqueda y filtros en Supabase; 12 productos por página en la tienda y 25 en `/admin/`.
+- Formulario individual, selección por página y cambios masivos de estado, destacado y clasificación.
+- Importación CSV UTF-8 con vista previa, validación y escritura atómica de hasta 1000 productos.
+- Administración restringida a los usuarios registrados en `catalog_admins`, incluidos los permisos de Storage.
 
-## 🚀 Setup Supabase (para fotos y datos reales)
+## Instalación o actualización
 
-### 1. Crear proyecto
-Ve a [supabase.com](https://supabase.com) → New Project (es gratis)
+Sigue [la guía completa de migración y carga de 200+ productos](docs/catalogo-migracion.md).
 
-### 2. Crear tabla de productos
-En **SQL Editor**, pega y ejecuta el contenido de `supabase/schema.sql`
+1. Guarda una copia de seguridad y prueba en un Supabase de ensayo.
+2. Ejecuta completo `supabase/migrations/202609300001_catalog.sql` en SQL Editor. Para una instalación nueva, `supabase/schema.sql` contiene el mismo SQL.
+3. Registra explícitamente el UUID de cada administrador en `public.catalog_admins`.
+4. Configura URL y clave pública en `js/supabase.js`. Nunca uses la clave `service_role` en el navegador.
+5. Publica los archivos estáticos después de aplicar la migración. El PR no publica ni migra producción automáticamente.
+6. Entra a `/admin/` y descarga la [plantilla CSV](docs/plantilla-productos.csv).
 
-### 3. Subir fotos
-- Ve a **Storage** → **New Bucket** → nombre: `productos` → marcar como **Public**
-- Sube tus fotos (puedes organizarlas por carpetas: `hilos/`, `telas/`, etc.)
-- Copia la ruta del archivo (ej: `hilos/hilo-rojo.jpg`)
+`supabase/seed.sql` es opcional: agrega ejemplos sin eliminar ni sobrescribir productos. Tabla correcta: `public.products`. Bucket: `product-images`.
 
-### 4. Agregar producto con foto
-En **Table Editor** → tabla `productos` → Insert row:
-```
-nombre:      "Hilo Rojo Premium"
-descripcion: "Hilo de algodón rojo brillante..."
-precio:      12.50
-categoria:   "Hilos"
-imagen_url:  "hilos/hilo-rojo.jpg"   ← ruta del archivo en Storage
-destacado:   false
-activo:      true
+## Desarrollo y pruebas
+
+No hay compilación ni dependencias de ejecución locales: sirve esta carpeta con un servidor HTTP estático. Para las pruebas, usa Node.js 24 y pnpm 11:
+
+```sh
+pnpm install --frozen-lockfile
+pnpm test
+pnpm exec playwright install chromium
+pnpm test:ui
 ```
 
-### 5. Conectar tu web
-En `js/supabase.js` reemplaza:
-```js
-const SUPABASE_URL = 'https://TU_PROYECTO.supabase.co';
-const SUPABASE_ANON_KEY = 'TU_ANON_KEY';
-```
-Encuéntralos en: **Settings → API**
-
-## 🌐 Deploy en Vercel
-```bash
-# Instala Vercel CLI
-npm i -g vercel
-vercel --prod
-```
-
-## 🎨 Tecnologías
-- HTML5 + JavaScript Vanilla
-- [Tailwind CSS](https://tailwindcss.com/) via CDN
-- [Supabase](https://supabase.com/) — Base de datos + Storage de fotos
-- Google Fonts (Playfair Display + Inter)
+Las pruebas SQL usan PostgreSQL embebido con roles de prueba. Las pruebas de navegador usan respuestas Supabase simuladas y no tocan producción. Antes de aplicar la migración real, verifica también en un proyecto Supabase de ensayo. Consulta la guía para respaldos, permisos, compatibilidad de imágenes y recuperación.

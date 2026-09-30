@@ -1,0 +1,1 @@
+{"name":"ginjes-catalog","private":true,"scripts":{"test":"node --test tests/*.test.cjs","test:ui":"node tests/browser.cjs"},"devDependencies":{"@electric-sql/pglite":"^0.5.8","@playwright/test":"^1.63.0","@supabase/supabase-js":"2.45.4"}}

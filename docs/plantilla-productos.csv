@@ -1,0 +1,3 @@
+﻿codigo,nombre,categoria,subcategoria,precio,descripcion,imagen_url,destacado,activo
+MET-BRO-001,Broche imán 18 mm,Metales,Broches,0,"Broche para bolsos y carteras",metales/broche-18.jpg,true,true
+PLA-REG-001,Regulador plástico,Plásticos,Reguladores,1.50,Regulador para correas,plasticos/regulador.jpg,false,true

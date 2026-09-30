@@ -1,12 +1,7 @@
--- =============================================
--- SEED CORREGIDO — Hebillas Gin&Jes
--- Rutas exactas según bucket "productos" en Supabase Storage
--- Ejecutar en: Supabase → SQL Editor → Run
--- =============================================
-
-TRUNCATE public.productos RESTART IDENTITY;
-
-INSERT INTO public.productos
+-- OPCIONAL: ejemplos; ejecutar después de la migración. No borra ni reemplaza productos.
+-- Las rutas se resuelven en product-images; subir los archivos correspondientes primero.
+begin;
+INSERT INTO public.products
   (nombre, precio, imagen_url, categoria, descripcion, codigo, destacado, activo)
 VALUES
 
@@ -118,12 +113,9 @@ VALUES
    0.00, 'productos plasticos/tiptop/sapito/tiptopsapito.jpg',
    'Tiptop',
    'Tiptop modelo sapito en plástico para calzado.',
-   'PLAS-TIPSAP', true, true);
+   'PLAS-TIPSAP', true, true)
+ON CONFLICT (codigo) DO NOTHING;
 
 
--- =============================================
--- VERIFICAR
--- =============================================
-SELECT id, codigo, nombre, categoria, imagen_url
-FROM public.productos
-ORDER BY categoria, nombre;
+
+commit;

@@ -1,5 +1,3 @@
--- Instalación nueva o actualización: copia autocontenida de migrations/202609300001_catalog.sql.
--- No ejecutar el schema antiguo: sus políticas permitían escribir a cualquier usuario autenticado.
 -- Ejecutar completo en SQL Editor como postgres. No ejecuta seed ni borra productos.
 begin;
 
