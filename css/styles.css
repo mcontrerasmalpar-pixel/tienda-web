@@ -1226,3 +1226,13 @@ footer {
 }
   }
 }
+
+.catalog-error{grid-column:1/-1;text-align:center;padding:4rem 1rem;color:#e88}
+#subcategory-filter{max-width:100%;width:100%;margin-top:10px}
+.cart-item{display:flex;align-items:center;gap:12px;padding:16px 0;border-bottom:1px solid var(--border)}
+.cart-item img{width:56px;height:56px;object-fit:contain}.cart-item>div{flex:1}.cart-item p{font-size:.8rem;margin-top:6px}
+
+.mobile-filters-toggle{display:none}
+.pcard-badge{z-index:1}
+@media(max-width:1024px){.mobile-filters-toggle{display:block;margin-bottom:20px;width:auto}.sidebar.filters-open{display:block;position:static;width:100%;padding:20px;border:1px solid var(--border);border-radius:8px;margin-bottom:24px}.sidebar.filters-open .sid-contact{display:none}}
+@media(max-width:480px){.pcard-foot{flex-wrap:wrap;align-items:flex-start}.pcard-price{white-space:nowrap}.pcard-add{margin-left:auto}}

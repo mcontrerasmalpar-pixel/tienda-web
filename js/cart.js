@@ -1,55 +1,21 @@
 let cart = [];
-
 function addToCart(productId) {
-  const product = products.find(p => p.id === productId);
-  const existing = cart.find(item => item.id === productId);
-  if (existing) {
-    existing.qty += 1;
-  } else {
-    cart.push({ ...product, qty: 1 });
-  }
-  updateCartUI();
-  openCart();
+  const product = allProducts.find(p => Number(p.id) === Number(productId));
+  if (!product) return;
+  const existing = cart.find(item => item.id === product.id);
+  if (existing) existing.qty++;
+  else cart.push({...product, qty: 1});
+  updateCartUI(); openCart();
 }
-
-function removeFromCart(productId) {
-  cart = cart.filter(item => item.id !== productId);
-  updateCartUI();
-}
-
+function removeFromCart(id) { cart = cart.filter(item => Number(item.id) !== Number(id)); updateCartUI(); }
 function updateCartUI() {
-  const count = cart.reduce((sum, item) => sum + item.qty, 0);
-  const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-  document.getElementById('cart-count').textContent = count;
-  document.getElementById('cart-total').textContent = `S/ ${total.toFixed(2)}`;
-  const cartItems = document.getElementById('cart-items');
-  if (cart.length === 0) {
-    cartItems.innerHTML = '<p class="text-center mt-12 text-gray-600">🧵 Tu carrito está vacío</p>';
-    return;
-  }
-  cartItems.innerHTML = cart.map(item => `
-    <div class="flex gap-3 py-4 border-b border-yellow-900/30">
-      <img src="${item.image}" class="w-14 h-14 object-cover" />
-      <div class="flex-1">
-        <p class="text-white text-sm font-medium leading-tight">${item.name}</p>
-        <p class="text-gray-500 text-xs mt-1">Cant: ${item.qty} × S/ ${item.price.toFixed(2)}</p>
-      </div>
-      <button onclick="removeFromCart(${item.id})" class="text-yellow-800 hover:text-yellow-400 text-lg leading-none">&times;</button>
-    </div>
-  `).join('');
+  const total = cart.reduce((sum, item) => sum + Number(item.precio) * item.qty, 0);
+  document.getElementById('cart-count').textContent = cart.reduce((sum, item) => sum + item.qty, 0);
+  document.getElementById('cart-total').textContent = `S/ ${total.toFixed(2)}${cart.some(i => !Number(i.precio)) ? ' + por cotizar' : ''}`;
+  document.getElementById('cart-items').innerHTML = cart.length ? cart.map(item => `<div class="cart-item"><img src="${escAttr(getImageUrl(item.imagen_url))}" alt="${escAttr(item.nombre)}" onerror="handleImgError(event)"><div><strong>${escAttr(item.nombre)}</strong><p>${item.qty} × ${formatPrecioModal(item.precio)}</p></div><button class="icon-btn" onclick="removeFromCart(${item.id})" aria-label="Quitar ${escAttr(item.nombre)}">×</button></div>`).join('') : '<p class="cart-empty">Tu carrito está vacío.</p>';
+  const message = 'Hola, quisiera confirmar disponibilidad y precio de:\n' + cart.map(item => `${item.qty} × ${item.nombre} (${item.codigo})`).join('\n');
+  document.querySelector('.cart-ft a').href = 'https://wa.me/51926894528?text=' + encodeURIComponent(message);
 }
-
-function openCart() {
-  document.getElementById('cart-sidebar').classList.add('cart-open');
-  document.getElementById('cart-overlay').classList.remove('hidden');
-}
-
-function closeCart() {
-  document.getElementById('cart-sidebar').classList.remove('cart-open');
-  document.getElementById('cart-overlay').classList.add('hidden');
-}
-
-function toggleCart() {
-  const sidebar = document.getElementById('cart-sidebar');
-  sidebar.classList.contains('cart-open') ? closeCart() : openCart();
-}
+function openCart() { document.getElementById('cart-sidebar').classList.add('open'); document.getElementById('cart-overlay').classList.add('open'); }
+function closeCart() { document.getElementById('cart-sidebar').classList.remove('open'); document.getElementById('cart-overlay').classList.remove('open'); }
+function toggleCart() { document.getElementById('cart-sidebar').classList.contains('open') ? closeCart() : openCart(); }

@@ -35,8 +35,12 @@
     <main class="content">
       <div class="page-heading"><div><p class="eyebrow">Catálogo</p><h1>Productos</h1><p class="muted">Agrega, edita y organiza el inventario visible en la tienda.</p></div><button id="new-product-btn" class="primary">+ Nuevo producto</button></div>
       <div class="stats-row"><div><span>Total productos</span><strong id="total-products">0</strong></div><div><span>Destacados</span><strong id="featured-products">0</strong></div><div><span>Categorías</span><strong id="category-total">0</strong></div></div>
-      <div class="toolbar"><input id="product-search" type="search" placeholder="Buscar por nombre o código..." /><select id="category-filter"><option value="">Todas las categorías</option></select></div>
+      <div class="toolbar"><input aria-label="Buscar productos" id="product-search" type="search" placeholder="Buscar por nombre o código..." /><select aria-label="Filtrar categoría" id="category-filter"><option value="">Todas las categorías</option></select><select id="sub-filter" aria-label="Filtrar subcategoría"><option value="">Todas las subcategorías</option></select><select id="active-filter" aria-label="Filtrar estado"><option value="">Todos los estados</option><option value="true">Activos</option><option value="false">Inactivos</option></select></div>
+      <details class="import-panel"><summary>Importar productos desde CSV</summary><p class="muted">Hasta 1000 productos por archivo (5 MB). Primero valida y revisa la vista previa. La importación es completa: si una fila falla, ninguna se guarda.</p><a class="ghost" href="../docs/plantilla-productos.csv" download>Descargar plantilla CSV</a><label>Archivo CSV<input id="csv-file" type="file" accept=".csv,text/csv" /></label><label>Modo<select id="csv-mode"><option value="insert">Solo crear (rechazar códigos existentes)</option><option value="upsert">Crear y reemplazar por código</option></select></label><p class="muted">Reemplazar sobrescribe todos los campos del código coincidente. Campos opcionales vacíos borran descripción, imagen y subcategoría; destacado vacío = false y activo vacío = true. Usa la ruta actual para conservar una imagen.</p><button id="csv-validate" class="ghost">Validar archivo</button><div id="csv-preview" aria-live="polite"></div><button id="csv-import" class="primary" disabled>Importar archivo validado</button></details>
+      <div class="bulk-panel"><label class="check"><input id="select-page" type="checkbox" /> Seleccionar página</label><span id="selected-count">0 seleccionados</span><select id="bulk-action" aria-label="Acción masiva"><option value="">Acción masiva…</option><option value="activate">Activar</option><option value="deactivate">Desactivar</option><option value="feature">Destacar</option><option value="unfeature">Quitar destacado</option><option value="category">Cambiar categoría/subcategoría</option></select><select id="bulk-category" aria-label="Nueva categoría"></select><select id="bulk-subcategory" aria-label="Nueva subcategoría"></select><button id="bulk-apply" class="ghost">Aplicar a seleccionados</button></div>
+      <p id="list-count" aria-live="polite"></p>
       <div id="products-list" class="products-list"><div class="loading">Cargando catálogo…</div></div>
+      <nav class="pager" aria-label="Paginación"><button id="previous-page" class="ghost">Anterior</button><span id="page-label"></span><button id="next-page" class="ghost">Siguiente</button></nav>
     </main>
   </section>
 
@@ -46,12 +50,12 @@
       <input id="product-id" type="hidden" />
       <div class="form-grid">
         <label>Nombre *<input id="product-name" required /></label>
-        <label>Código<input id="product-code" /></label>
-        <label>Categoría *<input id="product-category" list="category-options" required /><datalist id="category-options"></datalist></label>
+        <label>Código único *<input id="product-code" required maxlength="64" pattern="[A-Za-z0-9][A-Za-z0-9._/\-]{0,63}" /></label>
+        <label>Categoría *<select id="product-category" required></select><button id="new-category" type="button" class="ghost">+ Categoría</button></label><label>Subcategoría<select id="product-subcategory"></select><button id="new-subcategory" type="button" class="ghost">+ Subcategoría</button></label>
         <label>Precio (S/)<input id="product-price" type="number" min="0" step="0.01" placeholder="Opcional" /></label>
       </div>
       <label>Descripción<textarea id="product-description" rows="4" placeholder="Describe el producto..."></textarea></label>
-      <label class="check"><input id="product-featured" type="checkbox" /> Marcar como destacado</label>
+      <label class="check"><input id="product-active" type="checkbox" checked /> Visible en la tienda</label><label class="check"><input id="product-featured" type="checkbox" /> Marcar como destacado</label>
       <label class="upload">Imagen del producto<input id="product-image" type="file" accept="image/jpeg,image/png,image/webp" /><span id="file-name">JPG, PNG o WEBP · máximo 5 MB</span></label>
       <div id="image-preview" class="image-preview hidden"><img id="preview-img" alt="Vista previa" /></div>
       <p id="form-error" class="error" aria-live="polite"></p>
@@ -60,6 +64,7 @@
   </dialog>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
   <script src="../js/supabase.js"></script>
+  <script src="../js/catalog.js"></script>
   <script src="admin.js"></script>
 </body>
 </html>

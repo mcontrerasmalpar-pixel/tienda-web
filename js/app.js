@@ -1,9 +1,3 @@
-// ── Toggle carrito ──────────────────────────
-function toggleCart() {
-  document.getElementById('cart-sidebar').classList.toggle('open');
-  document.getElementById('cart-overlay').classList.toggle('open');
-}
-
 // ── Toggle menú móvil ───────────────────────
 function toggleMenu() {
   const menu = document.getElementById('mobile-menu');
